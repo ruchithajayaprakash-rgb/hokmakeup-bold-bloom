@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { PriceLine } from "./Price";
 
 type Row = {
@@ -34,79 +33,88 @@ const ROWS: Row[] = [
   },
 ];
 
-function ProductRow({ r, i }: { r: Row; i: number }) {
-  const targetRef = useRef(null);
-  
-  // Monitors the scroll position relative to THIS specific row
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start end", "center center", "end start"],
-  });
-
-  // Items grow and fade in as they hit center, then shrink and fade out
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, 0.85]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-
+function HoverVideo() {
+  const vRef = useRef<HTMLVideoElement>(null);
   return (
-    <motion.div
-      ref={targetRef}
-      style={{ scale, opacity }}
-      className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center min-h-[70vh] md:min-h-[85vh] py-10 md:py-20"
+    <div
+      className="relative aspect-[9/16] w-full max-w-[320px] mx-auto overflow-hidden rounded-3xl border-2 border-dashed border-hok bg-white/40 group"
+      onMouseEnter={() => vRef.current?.play().catch(() => {})}
+      onMouseLeave={() => {
+        const v = vRef.current;
+        if (v) {
+          v.pause();
+          v.currentTime = 0;
+        }
+      }}
     >
-      {/* Video Side: 9:16 Instagram Reel Ratio */}
-      <div className="relative aspect-[9/16] w-full max-w-[320px] mx-auto overflow-hidden rounded-3xl border-2 border-dashed border-hok bg-white/40 group">
-         <div className="absolute inset-0 flex items-center justify-center text-xs font-body uppercase tracking-widest opacity-60 group-hover:opacity-0 transition-opacity">
-          Thumbnail
-        </div>
-        <video
-          className="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          muted playsInline loop autoPlay
-        >
-          <source src="" type="video/mp4" />
-        </video>
+      <div className="absolute inset-0 flex items-center justify-center text-xs font-body uppercase tracking-widest opacity-60 group-hover:opacity-0 transition-opacity duration-300">
+        Thumbnail
       </div>
-
-      {/* Content Side */}
-      <div className="flex flex-col gap-6 md:gap-8">
-        <div className="text-xs font-body uppercase tracking-[0.3em] opacity-60">
-          0{i + 1} / Hot Drop
-        </div>
-        <h3 className="font-display font-bold text-3xl md:text-5xl leading-tight">
-          {r.name}
-        </h3>
-        <PriceLine sale={r.sale} mrp={r.mrp} discount={r.discount} size="lg" />
-        <div className="rounded-2xl border-2 border-hok p-6 md:p-8 bg-[var(--hok-pastel-purple)]/30">
-          <div className="text-xs font-body uppercase tracking-widest opacity-60 mb-3">
-            Why you'll love it
-          </div>
-          <ul className="flex flex-col gap-2 font-body text-base md:text-lg">
-            {r.features.map((f) => (
-              <li key={f}>{f}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </motion.div>
+      <video
+        ref={vRef}
+        className="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        muted
+        playsInline
+        loop
+        preload="none"
+      >
+        <source src="" type="video/mp4" />
+      </video>
+    </div>
   );
 }
 
 export function WhiteSection() {
   return (
-    <section className="bg-hok-bg text-hok">
-      <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-12">
+    <section className="bg-hok-bg text-hok relative">
+      <div className="mx-auto max-w-[1600px] px-6 md:px-12">
         
-        {/* Sticky Header: z-40 ensures it stays ABOVE the scrolling products */}
-        <div className="sticky top-20 z-40 bg-hok-bg/90 backdrop-blur-md -mx-6 px-6 md:-mx-12 md:px-12 py-6 mb-4">
+        {/* Main Sticky Header */}
+        <div className="sticky top-20 z-50 bg-hok-bg/95 backdrop-blur-sm -mx-6 px-6 md:-mx-12 md:px-12 py-8">
           <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-5xl lg:text-6xl uppercase">
             Hot Right Now
           </h2>
         </div>
 
+        {/* Product Stack */}
         <div className="flex flex-col">
           {ROWS.map((r, i) => (
-            <ProductRow key={r.name} r={r} i={i} />
+            <div
+              key={r.name}
+              /* sticky top-40: This makes the row stay in place as you scroll. 
+                h-screen: Ensures each row has its own "space".
+                mb-[20vh]: Adds space between the items so they don't overlap too early.
+              */
+              className="sticky top-40 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center h-[70vh] md:h-[80vh] bg-hok-bg mb-[10vh] md:mb-[20vh] transition-all"
+            >
+              <HoverVideo />
+              
+              <div className="flex flex-col gap-6 md:gap-8 bg-hok-bg">
+                <div className="text-xs font-body uppercase tracking-[0.3em] opacity-60">
+                  0{i + 1} / Hot Drop
+                </div>
+                <h3 className="font-display font-bold text-3xl md:text-5xl leading-tight">
+                  {r.name}
+                </h3>
+                <PriceLine sale={r.sale} mrp={r.mrp} discount={r.discount} size="lg" />
+                
+                <div className="rounded-2xl border-2 border-hok p-6 md:p-8 bg-[var(--hok-pastel-purple)]/30">
+                  <div className="text-xs font-body uppercase tracking-widest opacity-60 mb-3">
+                    Why you'll love it
+                  </div>
+                  <ul className="flex flex-col gap-2 font-body text-base md:text-lg">
+                    {r.features.map((f) => (
+                      <li key={f}>{f}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
+        
+        {/* Spacer to allow the final item to scroll out of its sticky position */}
+        <div className="h-[20vh]" />
       </div>
     </section>
   );
