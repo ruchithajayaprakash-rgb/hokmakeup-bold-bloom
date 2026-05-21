@@ -1,29 +1,14 @@
-## Goal
+# Fix category placeholder cutoff in PurpleHero
 
-When a `HorizontalScrollLock` section (New Arrivals, Brands On Board) enters scroll-lock, the section's heading should sit just under the purple sticky header — and the horizontal scroll should only start at that moment. Right now the section pins flush to `top: 0`, so the fixed header covers the heading and horizontal translation begins before the heading is on screen.
+The dashed category tiles at the top of the purple hero section are getting clipped by the header above and by the section's own `overflow-hidden`.
 
-## Approach
+## Changes
 
-Offset the sticky child by the header height, shrink its height by the same amount, and adjust the progress math so horizontal translation begins exactly when the section reaches the pin point (not when it reaches `top: 0`).
+Only file touched: `src/components/hok/PurpleHero.tsx`.
 
-### Changes in `src/components/hok/HorizontalScrollLock.tsx`
+- Add top padding to the categories container so tiles sit below the fixed header: `pt-16 md:pt-20`.
+- Increase the categories container height slightly so the lower-row tiles aren't cropped at the bottom: `h-[44vh] min-h-[380px] md:h-[40vh]`.
+- Nudge the top-row tile positions down (`top: 18%` instead of `12–15%`) and the bottom-row tiles up (`top: 58%` instead of `62%`) so all 7 tiles fit comfortably inside the container.
+- Keep `overflow-hidden` (intentional for the floating-tiles aesthetic) and leave the hero video block untouched.
 
-1. Read the header height at runtime (measure `<header>` once on mount and on resize) and store it as a CSS variable / state value — call it `headerOffset`. Fallback to `0` if no header is found.
-2. Apply it to the sticky element:
-   - `style={{ top: headerOffset, height: \`calc(100vh - ${headerOffset}px)\` }}`
-   - Remove `top-0` Tailwind class.
-3. Update the progress calculation:
-   - `progress = clamp((headerOffset - rect.top) / distance, 0, 1)`
-   - So translation starts the instant the section's top crosses the header's bottom edge (pin point), not when it hits the viewport top.
-4. Keep `wrapper.style.height = stickyH + distance` as today; `stickyH` will now be the reduced height, which is correct.
-
-### No changes needed elsewhere
-
-- `Header.tsx`, `routes/index.tsx`, `ProductTile.tsx` stay as they are.
-- Both horizontal-lock sections (New Arrivals + Brands On Board) inherit the fix automatically since they share this component.
-
-## Technical notes
-
-- Measuring the header avoids hard-coding `88px` and stays correct across breakpoints (header has `py-5 md:py-7`).
-- Using a `ResizeObserver` on the header element (in addition to the existing observers) keeps `headerOffset` accurate if the header height changes responsively.
-- The existing scroll listener already runs on every scroll, so once `headerOffset` is captured, no extra per-frame work is added.
+No header, routing, or behavior changes.
