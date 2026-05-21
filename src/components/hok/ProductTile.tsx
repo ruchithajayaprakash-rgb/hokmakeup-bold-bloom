@@ -31,7 +31,7 @@ export function ProductTile({
       className={`group flex h-full w-full flex-col ${href ? "cursor-pointer" : ""}`}
     >
       {/* Dual image placeholder */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-dashed border-hok bg-white/40">
+      <div className="relative flex-1 min-h-0 w-full overflow-hidden rounded-2xl border-2 border-dashed border-hok bg-white/40">
         <div
           className={`absolute inset-0 flex items-center justify-center text-xs font-body uppercase tracking-widest opacity-60 transition-opacity duration-500 ${
             hover ? "opacity-0" : "opacity-60"
@@ -48,8 +48,8 @@ export function ProductTile({
         </div>
       </div>
 
-      <div className="mt-5 flex flex-col gap-3">
-        <h3 className="font-body text-base md:text-lg font-semibold leading-snug">{name}</h3>
+      <div className="mt-4 flex shrink-0 flex-col gap-2">
+        <h3 className="font-body text-sm md:text-base font-semibold leading-snug line-clamp-2">{name}</h3>
         <PriceLine sale={sale} mrp={mrp} discount={discount} />
         <ShadeCircles shades={shades} />
       </div>
