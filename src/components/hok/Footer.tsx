@@ -32,7 +32,14 @@ export function Footer() {
   return (
     <footer className="bg-hok-text text-white">
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-20 md:py-28">
-        <div className="font-display font-extrabold text-4xl md:text-6xl mb-16">HOKmakeup</div>
+        
+        {/* THE FIX: Replaced the text block with your image file */}
+        <img 
+          src="/logo.svg" 
+          alt="HOKmakeup Logo" 
+          className="h-10 md:h-14 w-auto mb-16 object-contain" 
+        />
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-12">
           {COLS.map((c) => (
             <div key={c.title}>
