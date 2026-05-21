@@ -6,10 +6,86 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* ... keep your colors and other variables as they are ... */
-  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-hok-purple: var(--hok-purple);
+  --color-hok-lime: var(--hok-lime);
+  --color-hok-pink: var(--hok-pink);
+  --color-hok-yellow: var(--hok-yellow);
+  --color-hok-bg: var(--hok-bg);
+  --color-hok-text: var(--hok-text);
+  --color-hok-discount: var(--hok-discount);
+  --color-hok-pastel-purple: var(--hok-pastel-purple);
+  --color-hok-pastel-lime: var(--hok-pastel-lime);
+  --color-hok-pastel-yellow: var(--hok-pastel-yellow);
+  --color-hok-pastel-pink: var(--hok-pastel-pink);
+
   --font-display: "Notable", system-ui, sans-serif;
   --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --hok-purple: #8E75EC;
+  --hok-lime: #CEFC85;
+  --hok-pink: #F1A3E0;
+  --hok-yellow: #FFF197;
+  --hok-bg: #FFFFFF;
+  --hok-text: #1A1A1A;
+  --hok-discount: #00875A;
+  --hok-pastel-purple: #E5DEFB;
+  --hok-pastel-lime: #ECFFD0;
+  --hok-pastel-yellow: #FFF9D1;
+  --hok-pastel-pink: #FBDEF3;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.16 0.005 285);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.005 285);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.005 285);
+  --primary: oklch(0.16 0.005 285);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0.005 285);
+  --secondary-foreground: oklch(0.16 0.005 285);
+  --muted: oklch(0.97 0.005 285);
+  --muted-foreground: oklch(0.5 0.01 285);
+  --accent: oklch(0.97 0.005 285);
+  --accent-foreground: oklch(0.16 0.005 285);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.16 0.005 285 / 0.15);
+  --input: oklch(0.16 0.005 285 / 0.2);
+  --ring: oklch(0.16 0.005 285);
+}
+
+.dark {
+  --background: oklch(0.16 0.005 285);
+  --foreground: oklch(1 0 0);
 }
 
 @layer base {
@@ -24,8 +100,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* CRITICAL FIX: Notable only exists in font-weight 400. 
-     This forces all headings to be normal weight so the font doesn't break! */
   h1, h2, h3, h4, h5 {
     font-family: var(--font-display);
     font-weight: 400 !important; 
@@ -34,11 +108,38 @@
 }
 
 @layer utilities {
-  /* Force Tailwind display classes to also respect the 400 weight */
   .font-display { 
     font-family: var(--font-display); 
     font-weight: 400 !important; 
   }
-  
-  /* ... keep the rest of your utilities ... */
+  .font-body { font-family: var(--font-body); }
+  .text-hok { color: var(--hok-text); }
+  .border-hok { border-color: var(--hok-text); }
+  .bg-hok-purple { background-color: var(--hok-purple); }
+  .bg-hok-lime { background-color: var(--hok-lime); }
+  .bg-hok-pink { background-color: var(--hok-pink); }
+  .bg-hok-yellow { background-color: var(--hok-yellow); }
+  .bg-hok-bg { background-color: var(--hok-bg); }
+  .text-hok-discount { color: var(--hok-discount); }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
 }
+
+@keyframes hok-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes hok-pop-in {
+  0% { opacity: 0; transform: translateY(8px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes hok-slide-up {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-hok-pop { animation: hok-pop-in 0.25s ease-out forwards; }
+.animate-hok-slide-up { animation: hok-slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
