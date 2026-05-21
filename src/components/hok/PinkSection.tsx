@@ -65,10 +65,13 @@ export function PinkSection() {
         
         {/* THE FIX: Using exact pixel heights to match the purple header flawlessly */}
         <div className="sticky top-[72px] md:top-[104px] z-30 bg-hok-pink -mx-6 px-6 md:-mx-12 md:px-12 py-4 mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-          <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-4xl lg:text-5xl max-w-[15ch]">
+          
+          {/* Removed max-w-[15ch] and font-extrabold here to allow the text to flow on one line */}
+          <h2 className="font-display leading-[1.1] text-3xl md:text-4xl lg:text-5xl shrink-0">
             BACK BY POPULAR DEMAND
           </h2>
-          <p className="font-body text-xs md:text-sm max-w-sm opacity-80">
+          
+          <p className="font-body text-xs md:text-sm max-w-sm opacity-80 md:text-right md:pb-1">
             The cult favourites you kept asking for — restocked, refreshed and ready to ship.
           </p>
         </div>
