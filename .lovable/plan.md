@@ -1,20 +1,14 @@
-# Fix clipped placeholders in hero categories section
+# Fix category placeholder cutoff in PurpleHero
 
-## Problem
+The dashed category tiles at the top of the purple hero section are getting clipped by the header above and by the section's own `overflow-hidden`.
 
-The sticky purple header overlays the top of the categories area, and the topmost dashed placeholder tiles (positioned at `top: 12–20%`) are clipped by the header. The container also uses `overflow-hidden`, which hard-crops anything that bleeds past its edges.
+## Changes
 
-## Fix
+Only file touched: `src/components/hok/PurpleHero.tsx`.
 
-In `src/components/hok/PurpleHero.tsx`:
+- Add top padding to the categories container so tiles sit below the fixed header: `pt-16 md:pt-20`.
+- Increase the categories container height slightly so the lower-row tiles aren't cropped at the bottom: `h-[44vh] min-h-[380px] md:h-[40vh]`.
+- Nudge the top-row tile positions down (`top: 18%` instead of `12–15%`) and the bottom-row tiles up (`top: 58%` instead of `62%`) so all 7 tiles fit comfortably inside the container.
+- Keep `overflow-hidden` (intentional for the floating-tiles aesthetic) and leave the hero video block untouched.
 
-- Add top padding to the categories container so floats start below the sticky header: `pt-10 md:pt-16`.
-- Slightly increase the container height to compensate (`h-[46vh] min-h-[380px] md:h-[42vh]`) so the lower-row placeholders aren't pushed into the hero block.
-- Nudge the topmost float positions down a touch (`top: 18%` instead of `12–15%`) so they sit fully inside the padded area rather than relying on padding alone.
-- Keep `overflow-hidden` (intentional for the floating-tiles effect) but ensure no tile's bounding box extends above `top: 8%` after the size offsets.
-
-## Technical notes
-
-- Only file touched: `src/components/hok/PurpleHero.tsx`.
-- No header changes, no layout/route changes.
-- Verify at 1261×853 viewport that all 7 dashed placeholders are fully visible with clear space below the header.
+No header, routing, or behavior changes.
