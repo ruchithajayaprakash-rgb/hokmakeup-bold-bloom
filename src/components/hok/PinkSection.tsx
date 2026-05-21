@@ -61,10 +61,11 @@ const PRODUCTS = [
 export function PinkSection() {
   return (
     <section className="bg-hok-pink text-hok">
-      <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-12 md:py-20">
+      {/* FIX 1: Split py into pt (padding-top) and pb (padding-bottom) to reduce the initial pink space */}
+      <div className="mx-auto max-w-[1600px] px-6 md:px-12 pt-6 pb-12 md:pt-10 md:pb-20">
         
-        {/* Sticky Header: Adjusted top-16 to account for the purple sticky navbar */}
-        <div className="sticky top-20 z-30 bg-hok-pink -mx-6 px-6 md:-mx-12 md:px-12 py-4 mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        {/* FIX 2: Changed top-20 to top-24 (mobile) and top-32 (desktop) so it completely clears the taller purple header */}
+        <div className="sticky top-24 md:top-32 z-30 bg-hok-pink -mx-6 px-6 md:-mx-12 md:px-12 py-4 mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-4xl lg:text-5xl max-w-[15ch]">
             BACK BY POPULAR DEMAND
           </h2>
