@@ -37,7 +37,8 @@ function HoverVideo() {
   const vRef = useRef<HTMLVideoElement>(null);
   return (
     <div
-      className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border-2 border-dashed border-hok bg-white/40"
+      // Changed aspect ratio to 9/16 for Instagram Reel size
+      className="relative aspect-[9/16] w-full max-w-[350px] mx-auto overflow-hidden rounded-3xl border-2 border-dashed border-hok bg-white/40 group"
       onMouseEnter={() => vRef.current?.play().catch(() => {})}
       onMouseLeave={() => {
         const v = vRef.current;
@@ -47,12 +48,14 @@ function HoverVideo() {
         }
       }}
     >
-      <div className="absolute inset-0 flex items-center justify-center text-xs font-body uppercase tracking-widest opacity-60">
-        Thumbnail
+      {/* Thumbnail Placeholder: Visible by default, fades on hover */}
+      <div className="absolute inset-0 flex items-center justify-center text-xs font-body uppercase tracking-widest opacity-60 group-hover:opacity-0 transition-opacity duration-300">
+        Thumbnail Placeholder
       </div>
+      
       <video
         ref={vRef}
-        className="absolute inset-0 h-full w-full object-cover opacity-0 hover:opacity-100 transition-opacity"
+        className="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         muted
         playsInline
         loop
@@ -67,23 +70,20 @@ function HoverVideo() {
 export function WhiteSection() {
   return (
     <section className="bg-hok-bg text-hok">
-      {/* Reduced section padding from py-32/48 to py-12/20 */}
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-12 md:py-20">
         
-        {/* Sticky Header: top-20 to clear purple navbar. Reduced size and bottom margin. */}
         <div className="sticky top-20 z-30 bg-hok-bg -mx-6 px-6 md:-mx-12 md:px-12 py-6 mb-8 md:mb-12">
           <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-5xl lg:text-6xl">
             HOT RIGHT NOW
           </h2>
         </div>
 
+        {/* Removed alternating order so videos/content stack consistently */}
         <div className="flex flex-col gap-24 md:gap-36">
           {ROWS.map((r, i) => (
             <div
               key={r.name}
-              className={`grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center ${
-                i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
-              }`}
+              className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center"
             >
               <HoverVideo />
               <div className="flex flex-col gap-8">
