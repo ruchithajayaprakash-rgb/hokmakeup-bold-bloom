@@ -54,8 +54,8 @@ export function PurpleHero() {
 
   return (
     <section id="top" className="bg-hok-purple text-hok">
-      {/* Categories: ~30vh */}
-      <div className="relative h-[40vh] min-h-[320px] md:h-[35vh] overflow-hidden">
+      {/* Categories */}
+      <div className="relative h-[44vh] min-h-[380px] md:h-[40vh] pt-16 md:pt-20 overflow-hidden">
         {CATEGORIES.map((c) => (
           <CategoryFloat key={c.name} {...c} />
         ))}
