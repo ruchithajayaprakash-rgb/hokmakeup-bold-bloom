@@ -82,11 +82,11 @@ export function NewArrivalsSection() {
   return (
     <HorizontalScrollLock heading="NEW ARRIVALS" bg="bg-hok-lime">
       {PRODUCTS.map((p) => (
-        <div key={p.name} className="h-full w-[72vw] sm:w-[40vw] md:w-[28vw] lg:w-[22vw] shrink-0">
+        <div key={p.name} className="w-[78vw] sm:w-[44vw] md:w-[32vw] lg:w-[24vw] shrink-0">
           <ProductTile {...p} />
         </div>
       ))}
-      <div className="h-full w-[72vw] sm:w-[40vw] md:w-[28vw] lg:w-[22vw] shrink-0">
+      <div className="w-[78vw] sm:w-[44vw] md:w-[32vw] lg:w-[24vw] shrink-0">
         <ShopAllTile
           label="Shop All New Arrivals →"
           pastelClass="bg-[var(--hok-pastel-lime)]"
