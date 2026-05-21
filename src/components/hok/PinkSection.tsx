@@ -66,7 +66,7 @@ export function PinkSection() {
         {/* Sticky Header: Adjusted top-16 to account for the purple sticky navbar */}
         <div className="sticky top-20 z-30 bg-hok-pink -mx-6 px-6 md:-mx-12 md:px-12 py-4 mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-4xl lg:text-5xl max-w-[15ch]">
-            Back by Popular Demand
+            BACK BY POPULAR DEMAND
           </h2>
           <p className="font-body text-xs md:text-sm max-w-sm opacity-80">
             The cult favourites you kept asking for — restocked, refreshed and ready to ship.
