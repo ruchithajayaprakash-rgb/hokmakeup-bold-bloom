@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -43,6 +42,7 @@
   --color-hok-pastel-yellow: var(--hok-pastel-yellow);
   --color-hok-pastel-pink: var(--hok-pastel-pink);
 
+  /* The Lovable Way: Just declare it here */
   --font-display: "Notable", system-ui, sans-serif;
   --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
 }
@@ -64,4 +64,83 @@
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.16 0.005 285);
-  --card: oklch(1 0 0
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.005 285);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.005 285);
+  --primary: oklch(0.16 0.005 285);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0.005 285);
+  --secondary-foreground: oklch(0.16 0.005 285);
+  --muted: oklch(0.97 0.005 285);
+  --muted-foreground: oklch(0.5 0.01 285);
+  --accent: oklch(0.97 0.005 285);
+  --accent-foreground: oklch(0.16 0.005 285);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.16 0.005 285 / 0.15);
+  --input: oklch(0.16 0.005 285 / 0.2);
+  --ring: oklch(0.16 0.005 285);
+}
+
+.dark {
+  --background: oklch(0.16 0.005 285);
+  --foreground: oklch(1 0 0);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body {
+    background-color: var(--hok-bg);
+    color: var(--hok-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  /* THE FIX: Force weight to 400 so the Notable API request succeeds */
+  .font-display { 
+    font-family: var(--font-display); 
+    font-weight: 400 !important; 
+  }
+  
+  .font-body { font-family: var(--font-body); }
+  .text-hok { color: var(--hok-text); }
+  .border-hok { border-color: var(--hok-text); }
+  .bg-hok-purple { background-color: var(--hok-purple); }
+  .bg-hok-lime { background-color: var(--hok-lime); }
+  .bg-hok-pink { background-color: var(--hok-pink); }
+  .bg-hok-yellow { background-color: var(--hok-yellow); }
+  .bg-hok-bg { background-color: var(--hok-bg); }
+  .text-hok-discount { color: var(--hok-discount); }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
+
+@keyframes hok-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes hok-pop-in {
+  0% { opacity: 0; transform: translateY(8px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes hok-slide-up {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-hok-pop { animation: hok-pop-in 0.25s ease-out forwards; }
+.animate-hok-slide-up { animation: hok-slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
