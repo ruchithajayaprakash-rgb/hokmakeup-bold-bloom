@@ -39,7 +39,8 @@ export function HorizontalScrollLock({
 
     const setHeight = () => {
       const stickyH = sticky.offsetHeight;
-      wrapper.style.height = `${stickyH + getDistance()}px`;
+      const distance = getDistance();
+      wrapper.style.height = `${stickyH + distance}px`;
       onScroll();
     };
 
@@ -72,7 +73,7 @@ export function HorizontalScrollLock({
         <div className="flex-1 min-h-0 flex items-stretch overflow-hidden pb-8 md:pb-10">
           <div
             ref={trackRef}
-            className="flex h-full min-h-0 items-stretch gap-6 md:gap-8 pl-6 md:pl-12 will-change-transform"
+            className="flex h-full min-h-0 items-stretch gap-6 md:gap-8 px-6 md:px-12 will-change-transform"
             style={{ transition: "transform 0.05s linear" }}
           >
             {children}
