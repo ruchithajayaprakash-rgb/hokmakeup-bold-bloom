@@ -2,15 +2,15 @@ import { useEffect, useRef, type ReactNode } from "react";
 
 /**
  * Horizontal scroll-lock section.
- * While the section is pinned, vertical scroll is translated into horizontal
- * scroll across an inner track. Section height is compact (not full viewport)
- * so the page doesn't feel like an endless tall block.
+ * Sticky element fills the viewport (100vh) so the page appears pinned —
+ * vertical scroll is consumed translating the inner track horizontally.
+ * Once the track is fully translated, the page resumes vertical scrolling.
  */
 export function HorizontalScrollLock({
   heading,
   bg,
   children,
-  sectionHeight = "78vh",
+  sectionHeight = "100vh",
 }: {
   heading: string;
   bg: string;
@@ -30,7 +30,6 @@ export function HorizontalScrollLock({
     const setHeight = () => {
       const distance = track.scrollWidth - window.innerWidth;
       const stickyH = sticky.offsetHeight;
-      // total scroll length = sticky height + horizontal distance
       wrapper.style.height = `${stickyH + Math.max(0, distance)}px`;
     };
     setHeight();
@@ -59,15 +58,15 @@ export function HorizontalScrollLock({
         className="sticky top-0 overflow-hidden flex flex-col"
         style={{ height: sectionHeight }}
       >
-        <div className="px-6 md:px-12 pt-10 md:pt-14">
-          <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(2.5rem,7vw,6.5rem)]">
+        <div className="px-6 md:px-12 pt-6 md:pt-8 shrink-0">
+          <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(2rem,5.5vw,5rem)]">
             {heading}
           </h2>
         </div>
-        <div className="flex-1 flex items-center overflow-hidden">
+        <div className="flex-1 min-h-0 flex items-center overflow-hidden pb-8 md:pb-10">
           <div
             ref={trackRef}
-            className="flex items-stretch gap-6 md:gap-10 pl-6 md:pl-12 pr-[12vw] will-change-transform"
+            className="flex h-full items-stretch gap-6 md:gap-8 pl-6 md:pl-12 will-change-transform"
             style={{ transition: "transform 0.05s linear" }}
           >
             {children}
