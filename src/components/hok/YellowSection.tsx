@@ -12,7 +12,7 @@ export function YellowSection() {
           <span className="text-xs font-body uppercase tracking-widest opacity-50">Brand Logo</span>
         </div>
       ))}
-      <div className="h-full w-[68vw] sm:w-[40vw] md:w-[28vw] lg:w-[24vw] shrink-0">
+      <div className="aspect-[3/4] w-[68vw] sm:w-[40vw] md:w-[28vw] lg:w-[24vw] shrink-0">
         <ShopAllTile
           label="Shop All Brands →"
           pastelClass="bg-[var(--hok-pastel-yellow)]"
