@@ -1,13 +1,13 @@
 import { useRef, useState, type MouseEvent } from "react";
 
 const CATEGORIES = [
-  { name: "New Arrivals", top: "12%", left: "6%", size: "w-24 h-24 md:w-32 md:h-32" },
-  { name: "Brands", top: "55%", left: "18%", size: "w-20 h-20 md:w-28 md:h-28" },
-  { name: "Makeup", top: "20%", left: "30%", size: "w-28 h-28 md:w-40 md:h-40" },
-  { name: "Skin", top: "62%", left: "45%", size: "w-24 h-24 md:w-32 md:h-32" },
-  { name: "Hair", top: "15%", left: "58%", size: "w-20 h-20 md:w-28 md:h-28" },
-  { name: "Fragrance", top: "50%", left: "72%", size: "w-28 h-28 md:w-36 md:h-36" },
-  { name: "Offers", top: "20%", left: "85%", size: "w-20 h-20 md:w-28 md:h-28" },
+  { name: "New Arrivals", top: "22%", left: "6%", size: "w-24 h-24 md:w-32 md:h-32" },
+  { name: "Brands", top: "58%", left: "18%", size: "w-20 h-20 md:w-28 md:h-28" },
+  { name: "Makeup", top: "26%", left: "30%", size: "w-28 h-28 md:w-40 md:h-40" },
+  { name: "Skin", top: "60%", left: "45%", size: "w-24 h-24 md:w-32 md:h-32" },
+  { name: "Hair", top: "22%", left: "58%", size: "w-20 h-20 md:w-28 md:h-28" },
+  { name: "Fragrance", top: "55%", left: "72%", size: "w-28 h-28 md:w-36 md:h-36" },
+  { name: "Offers", top: "24%", left: "85%", size: "w-20 h-20 md:w-28 md:h-28" },
 ];
 
 function CategoryFloat({
