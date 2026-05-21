@@ -62,8 +62,8 @@ export function HorizontalScrollLock({
     <section ref={wrapperRef} className={`relative ${bg} text-hok`}>
       <div
         ref={stickyRef}
-        className="sticky top-0 overflow-hidden flex flex-col"
-        style={{ height: sectionHeight }}
+        className="sticky overflow-hidden flex flex-col top-[68px] md:top-[88px]"
+        style={{ height: `calc(${sectionHeight} - 88px)` }}
       >
         <div className="px-6 md:px-12 pt-6 md:pt-8 pb-8 md:pb-12 shrink-0">
           <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(2rem,5.5vw,5rem)]">
@@ -81,5 +81,6 @@ export function HorizontalScrollLock({
         </div>
       </div>
     </section>
+
   );
 }
