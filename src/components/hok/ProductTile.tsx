@@ -31,7 +31,7 @@ export function ProductTile({
       className={`group flex h-full w-full flex-col ${href ? "cursor-pointer" : ""}`}
     >
       {/* Dual image placeholder */}
-      <div className="relative flex-1 min-h-0 w-full overflow-hidden rounded-2xl border-2 border-dashed border-hok bg-white/40">
+      <div className="relative min-h-[360px] flex-1 w-full overflow-hidden rounded-2xl border-2 border-dashed border-hok bg-white/40 md:min-h-[420px]">
         <div
           className={`absolute inset-0 flex items-center justify-center text-xs font-body uppercase tracking-widest opacity-60 transition-opacity duration-500 ${
             hover ? "opacity-0" : "opacity-60"
