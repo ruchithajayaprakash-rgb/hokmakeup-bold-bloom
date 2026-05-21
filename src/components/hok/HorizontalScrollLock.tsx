@@ -1,41 +1,76 @@
-import { useRef, type ReactNode } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, type ReactNode } from "react";
 
 /**
- * Horizontal scroll-lock section powered by Framer Motion.
- * The outer container provides a 300vh scroll track; the inner sticky
- * wrapper pins to the viewport while vertical scroll progress is mapped
- * to a horizontal translate on the product track.
+ * Horizontal scroll-lock section.
+ * Sticky element fills the viewport (100vh) so the page appears pinned —
+ * vertical scroll is consumed translating the inner track horizontally.
+ * Once the track is fully translated, the page resumes vertical scrolling.
  */
 export function HorizontalScrollLock({
   heading,
   bg,
   children,
+  sectionHeight = "100vh",
 }: {
   heading: string;
   bg: string;
   children: ReactNode;
   sectionHeight?: string;
 }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    const sticky = stickyRef.current;
+    const track = trackRef.current;
+    if (!wrapper || !sticky || !track) return;
+
+    const setHeight = () => {
+      const distance = track.scrollWidth - window.innerWidth;
+      const stickyH = sticky.offsetHeight;
+      wrapper.style.height = `${stickyH + Math.max(0, distance)}px`;
+    };
+    setHeight();
+
+    const onScroll = () => {
+      const rect = wrapper.getBoundingClientRect();
+      const distance = track.scrollWidth - window.innerWidth;
+      if (distance <= 0) return;
+      const progress = Math.min(1, Math.max(0, -rect.top / distance));
+      track.style.transform = `translate3d(${-progress * distance}px, 0, 0)`;
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", setHeight);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", setHeight);
+    };
+  }, []);
 
   return (
-    <section ref={containerRef} className={`relative h-[300vh] w-full ${bg} text-hok`}>
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
-        <div className="px-6 md:px-12 py-12 md:py-16">
+    <section ref={wrapperRef} className={`relative ${bg} text-hok`}>
+      <div
+        ref={stickyRef}
+        className="sticky top-0 overflow-hidden flex flex-col"
+        style={{ height: sectionHeight }}
+      >
+        <div className="px-6 md:px-12 pt-6 md:pt-8 shrink-0">
           <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(2rem,5.5vw,5rem)]">
             {heading}
           </h2>
         </div>
-        <div className="flex items-center overflow-hidden py-12 md:py-16">
-          <motion.div
-            style={{ x }}
-            className="flex items-stretch gap-6 md:gap-8 pl-6 md:pl-12 will-change-transform"
+        <div className="flex-1 min-h-0 flex items-center overflow-hidden pb-8 md:pb-10">
+          <div
+            ref={trackRef}
+            className="flex h-full items-stretch gap-6 md:gap-8 pl-6 md:pl-12 will-change-transform"
+            style={{ transition: "transform 0.05s linear" }}
           >
             {children}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
