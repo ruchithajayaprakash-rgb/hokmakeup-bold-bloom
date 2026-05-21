@@ -28,15 +28,15 @@
    inkscape:pageopacity="0.0"
    inkscape:pagecheckerboard="0"
    inkscape:deskcolor="#d1d1d1"
-   inkscape:zoom="0.36393443"
-   inkscape:cx="1353.2658"
-   inkscape:cy="-353.08559"
-   inkscape:window-width="1920"
-   inkscape:window-height="1009"
-   inkscape:window-x="-8"
-   inkscape:window-y="-8"
-   inkscape:window-maximized="1"
-   inkscape:current-layer="Layer_1" />
+   inkscape:zoom="0.72786886"
+   inkscape:cx="821.57657"
+   inkscape:cy="227.37612"
+   inkscape:window-width="1251"
+   inkscape:window-height="993"
+   inkscape:window-x="-7"
+   inkscape:window-y="0"
+   inkscape:window-maximized="0"
+   inkscape:current-layer="g1" />
 
 <path
    fill="#030303"
@@ -100,18 +100,8 @@
 
 
 
-<path
-   fill="#E7E6E2"
-   opacity="1.000000"
-   stroke="none"
-   d=" M137.372925,312.729462   C136.986450,303.234436 136.880676,293.492645 136.960815,283.392334   C138.086441,285.808167 139.864212,288.602112 139.799942,291.353027   C139.642380,298.098358 138.638382,304.824158 137.960648,311.556366   C137.928848,311.872253 137.759125,312.174255 137.372925,312.729462  z"
-   id="path18" />
-<path
-   fill="#E7E6E2"
-   opacity="1.000000"
-   stroke="none"
-   d=" M63.498444,244.002197   C63.967915,243.327499 64.873291,242.114502 65.837997,242.065308   C69.603012,241.873352 73.386818,242.049850 77.604813,242.261322   C75.493355,242.947495 72.959557,243.620499 70.382195,243.926361   C68.268898,244.177124 66.103760,243.991028 63.498444,244.002197  z"
-   id="path19" />
+
+
 
 <path
    fill="#E7E6E2"
@@ -120,12 +110,7 @@
    d=" M143.197906,291.086426   C143.656525,295.009216 143.757462,299.067688 143.759613,303.583862   C143.387299,299.768402 143.113770,295.495270 143.197906,291.086426  z"
    id="path21" />
 
-<path
-   fill="#E7E6E2"
-   opacity="1.000000"
-   stroke="none"
-   d=" M64.974716,203.157593   C64.163551,202.863495 62.635086,202.305588 62.516800,201.532028   C62.228348,199.645660 62.593208,197.659409 62.835480,195.354126   C63.616932,197.595169 64.257919,200.195419 64.974716,203.157593  z"
-   id="path23" />
+
 <path
    fill="#E7E6E2"
    opacity="1.000000"
@@ -203,19 +188,14 @@
 
 
 
-<circle
-   style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:7.42753;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-   id="path50"
-   cx="1159.6487"
-   cy="234.31818"
-   r="32.60923" /><text
-   xml:space="preserve"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.1024px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.65512;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
-   x="1142.6252"
-   y="252.2818"
-   id="text1"><tspan
-     sodipodi:role="line"
-     id="tspan1"
-     x="1142.6252"
-     y="252.2818"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.1024px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:#000000;stroke-width:2.65512;stroke-opacity:1">R</tspan></text></svg>
+<g
+   id="g1"><circle
+     style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:7.42753;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     id="path50"
+     cx="1159.6487"
+     cy="234.31818"
+     r="32.60923" /><path
+     d="m 1149.6001,236.33552 v -5.03021 h 12.8608 q 2.3076,0 3.7078,-1.60759 1.4002,-1.60759 1.4002,-4.25234 v 0 q 0,-2.64475 -1.4002,-4.25234 -1.4002,-1.60759 -3.7078,-1.60759 h -12.8608 v -5.03021 h 12.6533 q 3.293,0 5.7562,1.37423 2.4633,1.3483 3.8116,3.78562 1.3742,2.43732 1.3742,5.73029 v 0 q 0,3.26704 -1.3742,5.73029 -1.3742,2.43732 -3.8375,3.81155 -2.4373,1.3483 -5.7303,1.3483 z m -2.3077,15.94628 v -37.72656 h 5.2895 v 37.72656 z m 21.2099,0 -8.6343,-17.11308 5.2635,-1.19273 9.6456,18.30581 z"
+     id="text1"
+     style="font-size:53.1024px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift, Normal';stroke:#000000;stroke-width:2.65512;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+     aria-label="R" /></g></svg>
