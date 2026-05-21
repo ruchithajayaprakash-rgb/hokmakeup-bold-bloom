@@ -27,25 +27,32 @@ export function HorizontalScrollLock({
     const track = trackRef.current;
     if (!wrapper || !sticky || !track) return;
 
-    const setHeight = () => {
-      const distance = track.scrollWidth - window.innerWidth;
-      const stickyH = sticky.offsetHeight;
-      wrapper.style.height = `${stickyH + Math.max(0, distance)}px`;
-    };
-    setHeight();
+    const getDistance = () => Math.max(0, track.scrollWidth - sticky.clientWidth);
 
     const onScroll = () => {
       const rect = wrapper.getBoundingClientRect();
-      const distance = track.scrollWidth - window.innerWidth;
+      const distance = getDistance();
       if (distance <= 0) return;
       const progress = Math.min(1, Math.max(0, -rect.top / distance));
       track.style.transform = `translate3d(${-progress * distance}px, 0, 0)`;
     };
 
+    const setHeight = () => {
+      const stickyH = sticky.offsetHeight;
+      const distance = getDistance();
+      wrapper.style.height = `${stickyH + distance}px`;
+      onScroll();
+    };
+
+    const resizeObserver = new ResizeObserver(setHeight);
+    resizeObserver.observe(sticky);
+    resizeObserver.observe(track);
+    requestAnimationFrame(setHeight);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", setHeight);
     return () => {
+      resizeObserver.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", setHeight);
     };
@@ -63,10 +70,10 @@ export function HorizontalScrollLock({
             {heading}
           </h2>
         </div>
-        <div className="flex-1 min-h-0 flex items-center overflow-hidden pb-8 md:pb-10">
+        <div className="flex-1 min-h-0 flex items-stretch overflow-hidden pb-8 md:pb-10">
           <div
             ref={trackRef}
-            className="flex h-full items-stretch gap-6 md:gap-8 pl-6 md:pl-12 will-change-transform"
+            className="flex h-full min-h-0 items-stretch gap-6 md:gap-8 px-6 md:px-12 will-change-transform"
             style={{ transition: "transform 0.05s linear" }}
           >
             {children}
