@@ -1,26 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/hok/Header";
+import { PurpleHero } from "@/components/hok/PurpleHero";
+import { NewArrivalsSection } from "@/components/hok/NewArrivalsSection";
+import { PinkSection } from "@/components/hok/PinkSection";
+import { YellowSection } from "@/components/hok/YellowSection";
+import { WhiteSection } from "@/components/hok/WhiteSection";
+import { Footer } from "@/components/hok/Footer";
+import { NewsletterModal } from "@/components/hok/NewsletterModal";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <main className="min-h-screen bg-hok-bg text-hok overflow-x-hidden">
+      <Header />
+      <PurpleHero />
+      <NewArrivalsSection />
+      <PinkSection />
+      <YellowSection />
+      <WhiteSection />
+      <Footer />
+      <NewsletterModal />
+    </main>
+  );
 }
