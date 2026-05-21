@@ -61,12 +61,9 @@ const PRODUCTS = [
 export function PinkSection() {
   return (
     <section className="bg-hok-pink text-hok">
-      {/* 1. Reduced vertical padding (py-12 md:py-20 instead of py-36) */}
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-12 md:py-20">
         
-        {/* 2. Reduced margin-bottom (mb-8 md:mb-12) and gap (gap-2) */}
         <div className="mb-8 md:mb-12 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-          {/* 3. Slightly smaller text (text-3xl to 5xl) to reduce height */}
           <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-4xl lg:text-5xl max-w-[15ch]">
             Back by Popular Demand
           </h2>
@@ -75,13 +72,19 @@ export function PinkSection() {
           </p>
         </div>
 
+        {/* Master container: The dashed border now wraps the entire 6-item grid */}
         <div className="relative rounded-[2rem] border-2 border-dashed border-hok bg-white/20 p-6 md:p-12">
+          
+          {/* Centered Hero Placeholder spanning the entire box */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <span className="text-xs font-body uppercase tracking-[0.2em] opacity-10">Hero Image Placeholder</span>
           </div>
 
-          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            {PRODUCTS.slice(0, 4).map((p) => (
+          {/* Unified Grid: 3 columns on desktop. 5 products + 1 button = 2 perfect rows */}
+          <div className="relative grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+            
+            {/* Map over ALL 5 products now, giving them identical sizing */}
+            {PRODUCTS.map((p) => (
               <div
                 key={p.name}
                 className="bg-white/90 rounded-2xl p-3 md:p-5 shadow-xl backdrop-blur-md"
@@ -89,19 +92,17 @@ export function PinkSection() {
                 <ProductTile {...p} />
               </div>
             ))}
+            
+            {/* The Shop All Tile naturally fills the 6th and final slot */}
+            <ShopAllTile
+              label="Shop all back in stock →"
+              pastelClass="bg-[var(--hok-pastel-pink)]"
+              boldClass="bg-hok-text text-white"
+            />
+            
           </div>
         </div>
 
-        <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          <div className="bg-white/60 rounded-2xl p-4 md:p-5 backdrop-blur-sm">
-            <ProductTile {...PRODUCTS[4]} />
-          </div>
-          <ShopAllTile
-            label="Shop all back in stock →"
-            pastelClass="bg-[var(--hok-pastel-pink)]"
-            boldClass="bg-hok-text text-white"
-          />
-        </div>
       </div>
     </section>
   );
