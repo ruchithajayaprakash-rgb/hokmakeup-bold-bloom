@@ -62,6 +62,7 @@ export function PinkSection() {
   return (
     <section className="bg-hok-pink text-hok">
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-24 md:py-36">
+        {/* Header Text */}
         <div className="mb-16 md:mb-24 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(2.5rem,7vw,7rem)] max-w-[12ch]">
             Back by Popular Demand
@@ -71,37 +72,31 @@ export function PinkSection() {
           </p>
         </div>
 
-        {/* Full-block background placeholder with overlapping tiles */}
+        {/* Banner with Tiles Layered Directly On Top */}
         <div className="relative">
-          <div className="relative aspect-[5/1] w-full border-2 border-dashed border-hok bg-white/30 flex items-center justify-center rounded-3xl">
-            <span className="text-sm font-body uppercase tracking-widest opacity-50">Hero Image Placeholder</span>
+          {/* Background Banner - I made this slightly taller (aspect-4/1) to fit the tiles better */}
+          <div className="relative aspect-[4/1] w-full border-2 border-dashed border-hok bg-white/20 flex items-center justify-center rounded-3xl overflow-hidden">
+            <span className="text-sm font-body uppercase tracking-widest opacity-20">Hero Image Placeholder</span>
           </div>
 
-          {/* Overlapping tiles — partially over the edges */}
-          <div className="relative -mt-16 md:-mt-32 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 px-0 md:px-6">
-            {PRODUCTS.slice(0, 4).map((p, i) => (
-              <div
-                key={p.name}
-                className={`${i === 0 ? "md:-translate-y-10" : ""} ${i === 1 ? "md:translate-y-6" : ""} ${i === 2 ? "md:-translate-y-6" : ""} ${i === 3 ? "md:translate-y-10" : ""} bg-white/60 rounded-2xl p-4 md:p-5 backdrop-blur-sm`}
-              >
-                <ProductTile {...p} />
-              </div>
-            ))}
+          {/* Tiles Container - 'absolute inset-0' puts it exactly over the banner */}
+          <div className="absolute inset-0 flex items-center px-4 md:px-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full">
+              {PRODUCTS.slice(0, 4).map((p, i) => (
+                <div
+                  key={p.name}
+                  /* These tiles are now centered on the pink banner with a clean shadow */
+                  className="bg-white/90 rounded-2xl p-3 md:p-5 shadow-2xl backdrop-blur-md"
+                >
+                  <ProductTile {...p} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* 5th tile + Shop all 6th — natural scroll */}
+        {/* Bottom Section: 5th Tile and Shop All Button */}
         <div className="mt-24 md:mt-40 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <div className="bg-white/60 rounded-2xl p-4 md:p-5 backdrop-blur-sm">
             <ProductTile {...PRODUCTS[4]} />
           </div>
-          <ShopAllTile
-            label="Shop all back in stock →"
-            pastelClass="bg-[var(--hok-pastel-pink)]"
-            boldClass="bg-hok-text text-white"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
