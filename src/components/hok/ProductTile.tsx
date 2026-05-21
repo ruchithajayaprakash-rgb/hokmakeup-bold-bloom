@@ -30,8 +30,8 @@ export function ProductTile({
       onMouseLeave={() => setHover(false)}
       className={`group flex h-full w-full flex-col ${href ? "cursor-pointer" : ""}`}
     >
-      {/* Dual image placeholder */}
-      <div className="relative min-h-[360px] flex-1 w-full overflow-hidden rounded-2xl border-2 border-dashed border-hok bg-white/40 md:min-h-[420px]">
+      {/* Dual image placeholder — 3:4 ratio */}
+      <div className="relative aspect-[3/4] w-full shrink-0 overflow-hidden rounded-2xl border-2 border-dashed border-hok bg-white/40">
         <div
           className={`absolute inset-0 flex items-center justify-center text-xs font-body uppercase tracking-widest opacity-60 transition-opacity duration-500 ${
             hover ? "opacity-0" : "opacity-60"
@@ -49,7 +49,7 @@ export function ProductTile({
       </div>
 
       <div className="mt-4 flex shrink-0 flex-col gap-2">
-        <h3 className="font-body text-sm md:text-base font-semibold leading-snug line-clamp-2">{name}</h3>
+        <h3 className="font-body text-sm md:text-base font-semibold leading-snug line-clamp-2 min-h-[2.6em]">{name}</h3>
         <PriceLine sale={sale} mrp={mrp} discount={discount} />
         <ShadeCircles shades={shades} />
       </div>
