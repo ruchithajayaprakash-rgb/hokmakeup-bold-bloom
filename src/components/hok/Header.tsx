@@ -6,9 +6,11 @@ export function Header() {
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-12 md:py-7">
         <a href="#top" className="transition-transform hover:scale-105">
           <img 
+            /* Make sure this matches your exact file name! */
             src="/file.svg" 
             alt="HOKmakeup Logo" 
-            className="h-8 md:h-10 w-auto object-contain" 
+            /* INCREASED SIZE HERE: Changed from h-8 md:h-10 to h-10 md:h-14 */
+            className="h-10 md:h-14 w-auto object-contain" 
           />
         </a>
         <nav className="flex items-center gap-4 md:gap-7 text-hok">
