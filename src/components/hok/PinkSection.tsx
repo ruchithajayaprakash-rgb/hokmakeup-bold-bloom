@@ -72,31 +72,38 @@ export function PinkSection() {
           </p>
         </div>
 
-        {/* Banner with Tiles Layered Directly On Top */}
-        <div className="relative">
-          {/* Background Banner - I made this slightly taller (aspect-4/1) to fit the tiles better */}
-          <div className="relative aspect-[4/1] w-full border-2 border-dashed border-hok bg-white/20 flex items-center justify-center rounded-3xl overflow-hidden">
-            <span className="text-sm font-body uppercase tracking-widest opacity-20">Hero Image Placeholder</span>
+        {/* This container IS the banner. It will grow to fit the tiles inside it. */}
+        <div className="relative rounded-[2rem] border-2 border-dashed border-hok bg-white/20 p-6 md:p-12">
+          {/* Label in the background */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="text-sm font-body uppercase tracking-[0.2em] opacity-10">Hero Image Placeholder</span>
           </div>
 
-          {/* Tiles Container - 'absolute inset-0' puts it exactly over the banner */}
-          <div className="absolute inset-0 flex items-center px-4 md:px-10">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full">
-              {PRODUCTS.slice(0, 4).map((p, i) => (
-                <div
-                  key={p.name}
-                  /* These tiles are now centered on the pink banner with a clean shadow */
-                  className="bg-white/90 rounded-2xl p-3 md:p-5 shadow-2xl backdrop-blur-md"
-                >
-                  <ProductTile {...p} />
-                </div>
-              ))}
-            </div>
+          {/* The Grid of Products - now sitting naturally inside the box */}
+          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            {PRODUCTS.slice(0, 4).map((p) => (
+              <div
+                key={p.name}
+                className="bg-white/90 rounded-2xl p-3 md:p-5 shadow-xl backdrop-blur-md"
+              >
+                <ProductTile {...p} />
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Bottom Section: 5th Tile and Shop All Button */}
-        <div className="mt-24 md:mt-40 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+        <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <div className="bg-white/60 rounded-2xl p-4 md:p-5 backdrop-blur-sm">
             <ProductTile {...PRODUCTS[4]} />
           </div>
+          <ShopAllTile
+            label="Shop all back in stock →"
+            pastelClass="bg-[var(--hok-pastel-pink)]"
+            boldClass="bg-hok-text text-white"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
