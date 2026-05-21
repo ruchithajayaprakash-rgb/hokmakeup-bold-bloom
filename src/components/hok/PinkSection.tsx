@@ -63,7 +63,8 @@ export function PinkSection() {
     <section className="bg-hok-pink text-hok">
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-12 md:py-20">
         
-        <div className="mb-8 md:mb-12 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        {/* Sticky Header: Adjusted top-16 to account for the purple sticky navbar */}
+        <div className="sticky top-16 z-30 bg-hok-pink -mx-6 px-6 md:-mx-12 md:px-12 py-4 mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-4xl lg:text-5xl max-w-[15ch]">
             Back by Popular Demand
           </h2>
@@ -72,18 +73,18 @@ export function PinkSection() {
           </p>
         </div>
 
-        {/* Master container: The dashed border now wraps the entire 6-item grid */}
+        {/* Master container: Dash border wraps everything (5 products + 1 button) */}
         <div className="relative rounded-[2rem] border-2 border-dashed border-hok bg-white/20 p-6 md:p-12">
           
-          {/* Centered Hero Placeholder spanning the entire box */}
+          {/* Hero Placeholder behind all items */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <span className="text-xs font-body uppercase tracking-[0.2em] opacity-10">Hero Image Placeholder</span>
           </div>
 
-          {/* Unified Grid: 3 columns on desktop. 5 products + 1 button = 2 perfect rows */}
+          {/* Grid Layout: 3 columns on desktop ensures 3 items top, 3 items bottom */}
           <div className="relative grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             
-            {/* Map over ALL 5 products now, giving them identical sizing */}
+            {/* All 5 products are now in this primary grid */}
             {PRODUCTS.map((p) => (
               <div
                 key={p.name}
@@ -93,7 +94,7 @@ export function PinkSection() {
               </div>
             ))}
             
-            {/* The Shop All Tile naturally fills the 6th and final slot */}
+            {/* The Shop All Tile takes the 6th slot, completing the 3x2 grid */}
             <ShopAllTile
               label="Shop all back in stock →"
               pastelClass="bg-[var(--hok-pastel-pink)]"
