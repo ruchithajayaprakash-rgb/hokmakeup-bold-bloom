@@ -62,12 +62,12 @@ export function PinkSection() {
   return (
     <section className="bg-hok-pink text-hok">
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-24 md:py-36">
-        {/* Header Text */}
+        {/* Header Text - Smaller heading and paragraph */}
         <div className="mb-16 md:mb-24 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(2.5rem,7vw,7rem)] max-w-[12ch]">
+          <h2 className="font-display font-extrabold leading-[1.1] text-[clamp(2rem,4.5vw,3.5rem)] max-w-[15ch]">
             Back by Popular Demand
           </h2>
-          <p className="font-body text-base md:text-lg max-w-md opacity-80">
+          <p className="font-body text-sm md:text-base max-w-sm opacity-80">
             The cult favourites you kept asking for — restocked, refreshed and ready to ship.
           </p>
         </div>
@@ -76,7 +76,7 @@ export function PinkSection() {
         <div className="relative rounded-[2rem] border-2 border-dashed border-hok bg-white/20 p-6 md:p-12">
           {/* Label in the background */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <span className="text-sm font-body uppercase tracking-[0.2em] opacity-10">Hero Image Placeholder</span>
+            <span className="text-xs font-body uppercase tracking-[0.2em] opacity-10">Hero Image Placeholder</span>
           </div>
 
           {/* The Grid of Products - now sitting naturally inside the box */}
