@@ -67,10 +67,15 @@ function HoverVideo() {
 export function WhiteSection() {
   return (
     <section className="bg-hok-bg text-hok">
-      <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-32 md:py-48">
-        <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(3rem,9vw,9rem)] mb-20 md:mb-32">
-          HOT RIGHT NOW
-        </h2>
+      {/* Reduced section padding from py-32/48 to py-12/20 */}
+      <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-12 md:py-20">
+        
+        {/* Sticky Header: top-20 to clear purple navbar. Reduced size and bottom margin. */}
+        <div className="sticky top-20 z-30 bg-hok-bg -mx-6 px-6 md:-mx-12 md:px-12 py-6 mb-8 md:mb-12">
+          <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-5xl lg:text-6xl">
+            HOT RIGHT NOW
+          </h2>
+        </div>
 
         <div className="flex flex-col gap-24 md:gap-36">
           {ROWS.map((r, i) => (
