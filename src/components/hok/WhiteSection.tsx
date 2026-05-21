@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { PriceLine } from "./Price";
+import { Truck, CreditCard } from "lucide-react"; // Imported standard icons for the dark section
 
 type Row = {
   name: string;
@@ -69,8 +70,8 @@ export function WhiteSection() {
     <section className="bg-hok-bg text-hok relative">
       <div className="mx-auto max-w-[1600px] px-6 md:px-12">
         
-        {/* Main Sticky Header */}
-        <div className="sticky top-20 z-50 bg-hok-bg/95 backdrop-blur-sm -mx-6 px-6 md:-mx-12 md:px-12 py-8">
+        {/* FIX 1: Exact pixel heights to dock cleanly under the purple navigation bar */}
+        <div className="sticky top-[72px] md:top-[104px] z-40 bg-hok-bg/95 backdrop-blur-sm -mx-6 px-6 md:-mx-12 md:px-12 py-8">
           <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-5xl lg:text-6xl uppercase">
             Hot Right Now
           </h2>
@@ -78,44 +79,104 @@ export function WhiteSection() {
 
         {/* Product Stack */}
         <div className="flex flex-col">
-          {ROWS.map((r, i) => (
-            <div
-              key={r.name}
-              /* sticky top-40: This makes the row stay in place as you scroll. 
-                h-screen: Ensures each row has its own "space".
-                mb-[20vh]: Adds space between the items so they don't overlap too early.
-              */
-              className="sticky top-40 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center h-[70vh] md:h-[80vh] bg-hok-bg mb-[10vh] md:mb-[20vh] transition-all"
-            >
-              <HoverVideo />
-              
-              <div className="flex flex-col gap-6 md:gap-8 bg-hok-bg">
-                <div className="text-xs font-body uppercase tracking-[0.3em] opacity-60">
-                  0{i + 1} / Hot Drop
-                </div>
-                <h3 className="font-display font-bold text-3xl md:text-5xl leading-tight">
-                  {r.name}
-                </h3>
-                <PriceLine sale={r.sale} mrp={r.mrp} discount={r.discount} size="lg" />
+          {ROWS.map((r, i) => {
+            // FIX 2: Check if this is the last item so we can remove the extra empty space
+            const isLast = i === ROWS.length - 1;
+            
+            return (
+              <div
+                key={r.name}
+                /* FIX 3: Increased item sticky top distance to ensure it clears BOTH the purple nav AND the sticky heading above */
+                className={`sticky top-[160px] md:top-[220px] grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center h-[70vh] md:h-[80vh] bg-hok-bg transition-all ${
+                  isLast ? "mb-0" : "mb-[10vh] md:mb-[20vh]"
+                }`}
+              >
+                <HoverVideo />
                 
-                <div className="rounded-2xl border-2 border-hok p-6 md:p-8 bg-[var(--hok-pastel-purple)]/30">
-                  <div className="text-xs font-body uppercase tracking-widest opacity-60 mb-3">
-                    Why you'll love it
+                <div className="flex flex-col gap-6 md:gap-8 bg-hok-bg">
+                  <div className="text-xs font-body uppercase tracking-[0.3em] opacity-60">
+                    0{i + 1} / Hot Drop
                   </div>
-                  <ul className="flex flex-col gap-2 font-body text-base md:text-lg">
-                    {r.features.map((f) => (
-                      <li key={f}>{f}</li>
-                    ))}
-                  </ul>
+                  <h3 className="font-display font-bold text-3xl md:text-5xl leading-tight">
+                    {r.name}
+                  </h3>
+                  <PriceLine sale={r.sale} mrp={r.mrp} discount={r.discount} size="lg" />
+                  
+                  <div className="rounded-2xl border-2 border-hok p-6 md:p-8 bg-[var(--hok-pastel-purple)]/30">
+                    <div className="text-xs font-body uppercase tracking-widest opacity-60 mb-3">
+                      Why you'll love it
+                    </div>
+                    <ul className="flex flex-col gap-2 font-body text-base md:text-lg">
+                      {r.features.map((f) => (
+                        <li key={f}>{f}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
-        
-        {/* Spacer to allow the final item to scroll out of its sticky position */}
-        <div className="h-[20vh]" />
       </div>
+
+      {/* FIX 4: Replaced the empty spacer with the new full-width Stats & Guarantee section.
+          Because it follows the sticky wrapper directly, scrolling down into this element
+          will naturally push the "Hot Right Now" header and the 3rd reel up and off the screen! */}
+      
+      <div className="w-full relative z-10">
+        {/* Top Half: Light Stats Strip */}
+        <div className="bg-[#fafafa] py-12 md:py-20 border-t border-hok/10">
+          <div className="mx-auto max-w-[1200px] flex flex-wrap justify-center md:justify-between gap-10 px-6 text-center">
+            <div>
+              <div className="text-4xl md:text-5xl font-black font-display mb-2">2012</div>
+              <div className="text-sm font-body opacity-80">Founded</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-black font-display mb-2">2k+</div>
+              <div className="text-sm font-body opacity-80">Products</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-black font-display mb-2">25+</div>
+              <div className="text-sm font-body opacity-80">Brands</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-black font-display mb-2">1M+</div>
+              <div className="text-sm font-body opacity-80">Orders Delivered</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Half: Dark Guarantee Strip */}
+        <div className="bg-[#1e1f24] text-white py-16 md:py-24">
+          <div className="mx-auto max-w-[1200px] flex flex-col md:flex-row justify-center md:justify-around items-center gap-16 px-6 text-center">
+            
+            {/* 100% Authentic */}
+            <div className="flex flex-col items-center max-w-[200px]">
+              <div className="border-2 border-white rounded-[4px] px-3 py-1 mb-5 font-bold tracking-wider text-sm">
+                100%
+              </div>
+              <div className="font-bold text-lg mb-1">100% Authentic</div>
+              <div className="opacity-80 text-sm">Our Guarantee</div>
+            </div>
+
+            {/* Free Shipping */}
+            <div className="flex flex-col items-center max-w-[200px]">
+              <Truck className="w-10 h-10 mb-5" strokeWidth={1.5} />
+              <div className="font-bold text-lg mb-1">Free Shipping</div>
+              <div className="opacity-80 text-sm">above Rs.699</div>
+            </div>
+
+            {/* Secured Payment */}
+            <div className="flex flex-col items-center max-w-[200px]">
+              <CreditCard className="w-10 h-10 mb-5" strokeWidth={1.5} />
+              <div className="font-bold text-lg mb-1">Secured Payment</div>
+              <div className="opacity-80 text-sm">100% guarantee</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 }
