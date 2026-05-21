@@ -36,12 +36,12 @@ export function NewsletterModal() {
 
         {submitted ? (
           <div className="py-10 text-center">
-            <h3 className="font-display font-extrabold text-3xl md:text-4xl mb-3">You're in ✦</h3>
+            <h3 className="font-display text-3xl md:text-4xl mb-3">You're in ✦</h3>
             <p className="font-body opacity-70">Check your inbox for your 20% off code.</p>
           </div>
         ) : (
           <>
-            <h3 className="font-display font-extrabold text-3xl md:text-5xl leading-[0.95] mb-4">
+            <h3 className="font-display text-3xl md:text-5xl leading-[0.95] mb-4">
               Don't miss an update!
             </h3>
             <p className="font-body text-sm md:text-base opacity-75 mb-7">
@@ -65,7 +65,7 @@ export function NewsletterModal() {
               />
               <button
                 type="submit"
-                className="rounded-full border-2 border-hok bg-hok-text px-7 py-3 font-body font-bold text-sm md:text-base text-white hover:bg-hok-bg hover:text-hok transition-colors"
+                className="rounded-full border-2 border-hok bg-hok-text px-7 py-3 font-body text-sm md:text-base text-white hover:bg-hok-bg hover:text-hok transition-colors"
               >
                 SUBSCRIBE
               </button>
