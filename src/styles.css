@@ -1,719 +1,140 @@
 @import "tailwindcss" source(none);
-
-@source "../src";
-
-@import "tw-animate-css";
-
-
-
-@custom-variant dark (&:is(.dark *));
-
-
-
-@theme inline {
-
-  --radius-sm: calc(var(--radius) - 4px);
-
-  --radius-md: calc(var(--radius) - 2px);
-
-  --radius-lg: var(--radius);
-
-  --radius-xl: calc(var(--radius) + 4px);
-
-
-
-  --color-background: var(--background);
-
-  --color-foreground: var(--foreground);
-
-  --color-card: var(--card);
-
-  --color-card-foreground: var(--card-foreground);
-
-  --color-popover: var(--popover);
-
-  --color-popover-foreground: var(--popover-foreground);
-
-  --color-primary: var(--primary);
-
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-muted: var(--muted);
-
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-accent: var(--accent);
-
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-destructive: var(--destructive);
-
-  --color-destructive-foreground: var(--destructive-foreground);
-
-  --color-border: var(--border);
-
-  --color-input: var(--input);
-
-  --color-ring: var(--ring);
-
-
-
-  --color-hok-purple: var(--hok-purple);
-
-  --color-hok-lime: var(--hok-lime);
-
-  --color-hok-pink: var(--hok-pink);
-
-  --color-hok-yellow: var(--hok-yellow);
-
-  --color-hok-bg: var(--hok-bg);
-
-  --color-hok-text: var(--hok-text);
-
-  --color-hok-discount: var(--hok-discount);
-
-  --color-hok-pastel-purple: var(--hok-pastel-purple);
-
-  --color-hok-pastel-lime: var(--hok-pastel-lime);
-
-  --color-hok-pastel-yellow: var(--hok-pastel-yellow);
-
-  --color-hok-pastel-pink: var(--hok-pastel-pink);
-
-
-
-  --font-display: "Syne", "Clash Display", system-ui, sans-serif;
-
-  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
-
-}
-
-
-
-:root {
-
-  --radius: 0.5rem;
-
-
-
-  --hok-purple: #8E75EC;
-
-  --hok-lime: #CEFC85;
-
-  --hok-pink: #F1A3E0;
-
-  --hok-yellow: #FFF197;
-
-  --hok-bg: #FFFFFF;
-
-  --hok-text: #1A1A1A;
-
-  --hok-discount: #00875A;
-
-  --hok-pastel-purple: #E5DEFB;
-
-  --hok-pastel-lime: #ECFFD0;
-
-  --hok-pastel-yellow: #FFF9D1;
-
-  --hok-pastel-pink: #FBDEF3;
-
-
-
-  --background: oklch(1 0 0);
-
-  --foreground: oklch(0.16 0.005 285);
-
-  --card: oklch(1 0 0);
-
-  --card-foreground: oklch(0.16 0.005 285);
-
-  --popover: oklch(1 0 0);
-
-  --popover-foreground: oklch(0.16 0.005 285);
-
-  --primary: oklch(0.16 0.005 285);
-
-  --primary-foreground: oklch(1 0 0);
-
-  --secondary: oklch(0.97 0.005 285);
-
-  --secondary-foreground: oklch(0.16 0.005 285);
-
-  --muted: oklch(0.97 0.005 285);
-
-  --muted-foreground: oklch(0.5 0.01 285);
-
-  --accent: oklch(0.97 0.005 285);
-
-  --accent-foreground: oklch(0.16 0.005 285);
-
-  --destructive: oklch(0.6 0.22 27);
-
-  --destructive-foreground: oklch(1 0 0);
-
-  --border: oklch(0.16 0.005 285 / 0.15);
-
-  --input: oklch(0.16 0.005 285 / 0.2);
-
-  --ring: oklch(0.16 0.005 285);
-
-}
-
-
-
-.dark {
-
-  --background: oklch(0.16 0.005 285);
-
-  --foreground: oklch(1 0 0);
-
-}
-
-
-
-@layer base {
-
-  * {
-
-    border-color: var(--color-border);
-
-  }
-
-
-
-  html, body {
-
-    background-color: var(--hok-bg);
-
-    color: var(--hok-text);
-
-    font-family: var(--font-body);
-
-    -webkit-font-smoothing: antialiased;
-
-  }
-
-
-
-  h1, h2, h3, h4, h5 {
-
-    font-family: var(--font-display);
-
-    letter-spacing: -0.02em;
-
-  }
-
-}
-
-
-
-@layer utilities {
-
-  .font-display { font-family: var(--font-display); }
-
-  .font-body { font-family: var(--font-body); }
-
-  .text-hok { color: var(--hok-text); }
-
-  .border-hok { border-color: var(--hok-text); }
-
-  .bg-hok-purple { background-color: var(--hok-purple); }
-
-  .bg-hok-lime { background-color: var(--hok-lime); }
-
-  .bg-hok-pink { background-color: var(--hok-pink); }
-
-  .bg-hok-yellow { background-color: var(--hok-yellow); }
-
-  .bg-hok-bg { background-color: var(--hok-bg); }
-
-  .text-hok-discount { color: var(--hok-discount); }
-
-
-
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-
-  .no-scrollbar { scrollbar-width: none; }
-
-}
-
-
-
-@keyframes hok-marquee {
-
-  from { transform: translateX(0); }
-
-  to { transform: translateX(-50%); }
-
-}
-
-
-
-@keyframes hok-pop-in {
-
-  0% { opacity: 0; transform: translateY(8px) scale(0.95); }
-
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-
-}
-
-
-
-@keyframes hok-slide-up {
-
-  0% { opacity: 0; transform: translateY(40px); }
-
-  100% { opacity: 1; transform: translateY(0); }
-
-}
-
-
-
-.animate-hok-pop { animation: hok-pop-in 0.25s ease-out forwards; }
-
-.animate-hok-slide-up { animation: hok-slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; } 
-
-That is a super bold and striking font choice! "Notable" is definitely going to give your headings a massive, punchy look.
-
-To change your main display font to Notable, we need to do two things in your styles.css file:
-
-Import the font from Google Fonts at the very top of the file.
-
-Update your --font-display variable in the @theme inline block to use "Notable".
-
-Here is your complete, updated styles.css file. You can copy and paste this directly over your current code:
-
-CSS
-/* 1. Import the Notable font from Google Fonts at the very top */
-@import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
-
-@import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--
-im building the website on lovable, which already loads fonts from google fonts. so it can be done the same way the existing font was loaded
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 
-Ah, that makes perfect sense! If you are using Lovable, it is super smart about automatically fetching Google Fonts as soon as you declare them in your CSS or Tailwind config. You don't need the @import line at all.
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
-All you have to do is swap out "Syne", "Clash Display" for "Notable" inside your @theme inline block, and Lovable will handle the rest behind the scenes.
+  --color-hok-purple: var(--hok-purple);
+  --color-hok-lime: var(--hok-lime);
+  --color-hok-pink: var(--hok-pink);
+  --color-hok-yellow: var(--hok-yellow);
+  --color-hok-bg: var(--hok-bg);
+  --color-hok-text: var(--hok-text);
+  --color-hok-discount: var(--hok-discount);
+  --color-hok-pastel-purple: var(--hok-pastel-purple);
+  --color-hok-pastel-lime: var(--hok-pastel-lime);
+  --color-hok-pastel-yellow: var(--hok-pastel-yellow);
+  --color-hok-pastel-pink: var(--hok-pastel-pink);
 
-Here is your complete, updated styles.css file ready to copy and paste:
-
-CSS
-@import "tailwindcss" source(none);
-@source "../src";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --color-hok-purple: var(--hok-purple);
-  --color-hok-lime: var(--hok-lime);
-  --color-hok-pink: var(--hok-pink);
-  --color-hok-yellow: var(--hok-yellow);
-  --color-hok-bg: var(--hok-bg);
-  --color-hok-text: var(--hok-text);
-  --color-hok-discount: var(--hok-discount);
-  --color-hok-pastel-purple: var(--hok-pastel-purple);
-  --color-hok-pastel-lime: var(--hok-pastel-lime);
-  --color-hok-pastel-yellow: var(--hok-pastel-yellow);
-  --color-hok-pastel-pink: var(--hok-pastel-pink);
-
-  /* THE FIX: Changed to Notable. Lovable will auto-load it! */
-  --font-display: "Notable", system-ui, sans-serif;
-  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Syne", "Clash Display", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0.5rem;
 
-  --hok-purple: #8E75EC;
-  --hok-lime: #CEFC85;
-  --hok-pink: #F1A3E0;
-  --hok-yellow: #FFF197;
-  --hok-bg: #FFFFFF;
-  --hok-text: #1A1A1A;
-  --hok-discount: #00875A;
-  --hok-pastel-purple: #E5DEFB;
-  --hok-pastel-lime: #ECFFD0;
-  --hok-pastel-yellow: #FFF9D1;
-  --hok-pastel-pink: #FBDEF3;
+  --hok-purple: #8E75EC;
+  --hok-lime: #CEFC85;
+  --hok-pink: #F1A3E0;
+  --hok-yellow: #FFF197;
+  --hok-bg: #FFFFFF;
+  --hok-text: #1A1A1A;
+  --hok-discount: #00875A;
+  --hok-pastel-purple: #E5DEFB;
+  --hok-pastel-lime: #ECFFD0;
+  --hok-pastel-yellow: #FFF9D1;
+  --hok-pastel-pink: #FBDEF3;
 
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.16 0.005 285);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.16 0.005 285);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.16 0.005 285);
-  --primary: oklch(0.16 0.005 285);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.97 0.005 285);
-  --secondary-foreground: oklch(0.16 0.005 285);
-  --muted: oklch(0.97 0.005 285);
-  --muted-foreground: oklch(0.5 0.01 285);
-  --accent: oklch(0.97 0.005 285);
-  --accent-foreground: oklch(0.16 0.005 285);
-  --destructive: oklch(0.6 0.22 27);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.16 0.005 285 / 0.15);
-  --input: oklch(0.16 0.005 285 / 0.2);
-  --ring: oklch(0.16 0.005 285);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.16 0.005 285);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.005 285);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.005 285);
+  --primary: oklch(0.16 0.005 285);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0.005 285);
+  --secondary-foreground: oklch(0.16 0.005 285);
+  --muted: oklch(0.97 0.005 285);
+  --muted-foreground: oklch(0.5 0.01 285);
+  --accent: oklch(0.97 0.005 285);
+  --accent-foreground: oklch(0.16 0.005 285);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.16 0.005 285 / 0.15);
+  --input: oklch(0.16 0.005 285 / 0.2);
+  --ring: oklch(0.16 0.005 285);
 }
 
 .dark {
-  --background: oklch(0.16 0.005 285);
-  --foreground: oklch(1 0 0);
+  --background: oklch(0.16 0.005 285);
+  --foreground: oklch(1 0 0);
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
+  * {
+    border-color: var(--color-border);
+  }
 
-  html, body {
-    background-color: var(--hok-bg);
-    color: var(--hok-text);
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
-  }
+  html, body {
+    background-color: var(--hok-bg);
+    color: var(--hok-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
 
-  h1, h2, h3, h4, h5 {
-    font-family: var(--font-display);
-    letter-spacing: -0.02em;
-  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
 }
 
 @layer utilities {
-  .font-display { font-family: var(--font-display); }
-  .font-body { font-family: var(--font-body); }
-  .text-hok { color: var(--hok-text); }
-  .border-hok { border-color: var(--hok-text); }
-  .bg-hok-purple { background-color: var(--hok-purple); }
-  .bg-hok-lime { background-color: var(--hok-lime); }
-  .bg-hok-pink { background-color: var(--hok-pink); }
-  .bg-hok-yellow { background-color: var(--hok-yellow); }
-  .bg-hok-bg { background-color: var(--hok-bg); }
-  .text-hok-discount { color: var(--hok-discount); }
+  .font-display { font-family: var(--font-display); }
+  .font-body { font-family: var(--font-body); }
+  .text-hok { color: var(--hok-text); }
+  .border-hok { border-color: var(--hok-text); }
+  .bg-hok-purple { background-color: var(--hok-purple); }
+  .bg-hok-lime { background-color: var(--hok-lime); }
+  .bg-hok-pink { background-color: var(--hok-pink); }
+  .bg-hok-yellow { background-color: var(--hok-yellow); }
+  .bg-hok-bg { background-color: var(--hok-bg); }
+  .text-hok-discount { color: var(--hok-discount); }
 
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
 }
 
 @keyframes hok-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @keyframes hok-pop-in {
-  0% { opacity: 0; transform: translateY(8px) scale(0.95); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+  0% { opacity: 0; transform: translateY(8px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes hok-slide-up {
-  0% { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .animate-hok-pop { animation: hok-pop-in 0.25s ease-out forwards; }
 .animate-hok-slide-up { animation: hok-slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-the font looks different on the website. also the logo image in the footer got replaced by text again
-
-Ah, I see exactly what is happening. Sometimes automatic font fetching fails to pick up specific fonts, causing it to fall back to a generic sans-serif font (which is what we are seeing in your screenshots). Also, Lovable's AI occasionally regenerates or reverts component structures, which explains why your footer logo reverted to text.
-
-Let's fix both of these issues permanently.
-
-1. Fixing the "Notable" Font
-To guarantee the font loads, we should manually import it at the top of your CSS file. The auto-fetch is great when it works, but an explicit import is bulletproof.
-
-Update your styles.css to include the @import line right at the very top:
-
-CSS
-@import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
-@import "tailwindcss" source(none);
-@source "../src";
-@import "tw-animate-css";
-
-/* ... rest of your CSS remains exactly the same ... */
-2. Fixing the Footer Logo
-Since Lovable overwrote the image with text, you will need to jump into your Footer component file (likely named Footer.tsx or similar inside your src/components/ folder) and swap the text out for the image tag again.
-
-Look for the text HOKmakeup® or HOKmakeup inside your footer code. It will look something like this:
-
-TypeScript
-// Find something resembling this:
-<span className="text-xl font-bold">HOKmakeup®</span> 
-Replace that text element with an <img> tag pointing to the SVG you uploaded. Based on your screenshots, it looks like you uploaded it to the public folder as file.svg or a similar name.
-
-Change it to:
-
-TypeScript
-<img src="/file.svg" alt="HOK Makeup Logo" className="h-8 w-auto" />
-(Note: If you renamed the SVG file when you uploaded it to the public folder, just make sure to change /file.svg to the correct exact file name, like /hok-logo.svg). You can adjust the h-8 (height 2rem) class to make it bigger or smaller!
-
-give me the full styles.css and footer codes
-
-Here is the complete styles.css with the bulletproof font import, and a full Footer.tsx component with the image logo implemented.
-
-1. The Full styles.css
-Copy and paste this entirely into your styles.css file. The @import at the very top forces the browser to fetch the Notable font directly from Google, bypassing any auto-load issues.
-
-CSS
-@import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');
-@import "tailwindcss" source(none);
-@source "../src";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --color-hok-purple: var(--hok-purple);
-  --color-hok-lime: var(--hok-lime);
-  --color-hok-pink: var(--hok-pink);
-  --color-hok-yellow: var(--hok-yellow);
-  --color-hok-bg: var(--hok-bg);
-  --color-hok-text: var(--hok-text);
-  --color-hok-discount: var(--hok-discount);
-  --color-hok-pastel-purple: var(--hok-pastel-purple);
-  --color-hok-pastel-lime: var(--hok-pastel-lime);
-  --color-hok-pastel-yellow: var(--hok-pastel-yellow);
-  --color-hok-pastel-pink: var(--hok-pastel-pink);
-
-  --font-display: "Notable", system-ui, sans-serif;
-  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
-}
-
-:root {
-  --radius: 0.5rem;
-
-  --hok-purple: #8E75EC;
-  --hok-lime: #CEFC85;
-  --hok-pink: #F1A3E0;
-  --hok-yellow: #FFF197;
-  --hok-bg: #FFFFFF;
-  --hok-text: #1A1A1A;
-  --hok-discount: #00875A;
-  --hok-pastel-purple: #E5DEFB;
-  --hok-pastel-lime: #ECFFD0;
-  --hok-pastel-yellow: #FFF9D1;
-  --hok-pastel-pink: #FBDEF3;
-
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.16 0.005 285);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.16 0.005 285);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.16 0.005 285);
-  --primary: oklch(0.16 0.005 285);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.97 0.005 285);
-  --secondary-foreground: oklch(0.16 0.005 285);
-  --muted: oklch(0.97 0.005 285);
-  --muted-foreground: oklch(0.5 0.01 285);
-  --accent: oklch(0.97 0.005 285);
-  --accent-foreground: oklch(0.16 0.005 285);
-  --destructive: oklch(0.6 0.22 27);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.16 0.005 285 / 0.15);
-  --input: oklch(0.16 0.005 285 / 0.2);
-  --ring: oklch(0.16 0.005 285);
-}
-
-.dark {
-  --background: oklch(0.16 0.005 285);
-  --foreground: oklch(1 0 0);
-}
-
-@layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
-  html, body {
-    background-color: var(--hok-bg);
-    color: var(--hok-text);
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1, h2, h3, h4, h5 {
-    font-family: var(--font-display);
-    letter-spacing: -0.02em;
-  }
-}
-
-@layer utilities {
-  .font-display { font-family: var(--font-display); }
-  .font-body { font-family: var(--font-body); }
-  .text-hok { color: var(--hok-text); }
-  .border-hok { border-color: var(--hok-text); }
-  .bg-hok-purple { background-color: var(--hok-purple); }
-  .bg-hok-lime { background-color: var(--hok-lime); }
-  .bg-hok-pink { background-color: var(--hok-pink); }
-  .bg-hok-yellow { background-color: var(--hok-yellow); }
-  .bg-hok-bg { background-color: var(--hok-bg); }
-  .text-hok-discount { color: var(--hok-discount); }
-
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { scrollbar-width: none; }
-}
-
-@keyframes hok-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-@keyframes hok-pop-in {
-  0% { opacity: 0; transform: translateY(8px) scale(0.95); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes hok-slide-up {
-  0% { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-.animate-hok-pop { animation: hok-pop-in 0.25s ease-out forwards; }
-.animate-hok-slide-up { animation: hok-slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-2. The Full Footer Code
-Replace your entire Footer component code with this. I have set it up with standard layout columns and replaced the text logo with your image file requirement. Make sure the file name logo.svg matches whatever you named it in your public folder.
-
-TypeScript
-import { Instagram, Facebook, Twitter, Youtube } from "lucide-react";
-
-export function Footer() {
-  return (
-    <footer className="bg-hok-bg border-t-2 border-hok pt-16 pb-8 px-6 md:px-12 text-hok">
-      <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-        
-        {/* Logo and About Section */}
-        <div className="flex flex-col gap-6 md:col-span-1">
-          <a href="/" className="inline-block">
-            {/* HERE IS THE IMAGE FIX */}
-            <img 
-              src="/logo.svg" 
-              alt="HOK Makeup Logo" 
-              className="h-10 w-auto object-contain" 
-            />
-          </a>
-          <p className="font-body text-sm opacity-80 leading-relaxed max-w-sm">
-            Your ultimate destination for global beauty trends. 100% authentic products curated for the bold and the beautiful.
-          </p>
-          <div className="flex gap-4 mt-2">
-            <a href="#" className="hover:text-hok-purple transition-colors"><Instagram className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-hok-purple transition-colors"><Facebook className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-hok-purple transition-colors"><Twitter className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-hok-purple transition-colors"><Youtube className="w-5 h-5" /></a>
-          </div>
-        </div>
-
-        {/* Links Column 1 */}
-        <div className="flex flex-col gap-4">
-          <h4 className="font-display font-bold uppercase text-lg mb-2">Shop</h4>
-          <a href="#" className="font-body text-sm hover:underline underline-offset-4">New Arrivals</a>
-          <a href="#" className="font-body text-sm hover:underline underline-offset-4">Bestsellers</a>
-          <a href="#" className="font-body text-sm hover:underline underline-offset-4">Brands</a>
-          <a href="#" className="font-body text-sm hover:underline underline-offset-4">Sale</a>
-        </div>
-
-        {/* Links Column 2 */}
-        <div className="flex flex-col gap-4">
-          <h4 className="font-display font-bold uppercase text-lg mb-2">Help</h4>
-          <a href="#" className="font-body text-sm hover:underline underline-offset-4">Track Order</a>
-          <a href="#" className="font-body text-sm hover:underline underline-offset-4">Shipping & Delivery</a>
-          <a href="#" className="font-body text-sm hover:underline underline-offset-4">Returns & Refunds</a>
-          <a href="#" className="font-body text-sm hover:underline underline-offset-4">Contact Us</a>
-        </div>
-
-        {/* Newsletter Column */}
-        <div className="flex flex-col gap-4 md:col-span-1">
-          <h4 className="font-display font-bold uppercase text-lg mb-2">Stay in the Loop</h4>
-          <p className="font-body text-sm opacity-80 mb-2">
-            Sign up for exclusive drops, sales, and beauty news.
-          </p>
-          <form className="flex w-full mt-2" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
-              className="flex-1 bg-transparent border-2 border-r-0 border-hok rounded-l-md px-4 py-2 font-body text-sm focus:outline-none focus:bg-hok-pastel-purple/20 transition-colors"
-            />
-            <button 
-              type="submit" 
-              className="bg-hok text-hok-bg border-2 border-hok px-4 py-2 rounded-r-md font-bold uppercase tracking-widest text-xs hover:bg-hok-purple transition-colors"
-            >
-              Join
-            </button>
-          </form>
-        </div>
-      </div>
-
-      {/* Bottom Copyright Strip */}
-      <div className="max-w-[1600px] mx-auto border-t border-hok/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-body opacity-60">
-        <div>© {new Date().getFullYear()} HOKmakeup. All rights reserved.</div>
-        <div className="flex gap-4">
-          <a href="#" className="hover:underline">Privacy Policy</a>
-          <a href="#" className="hover:underline">Terms of Service</a>
-        </div>
-      </div>
-    </footer>
-  );
-}
