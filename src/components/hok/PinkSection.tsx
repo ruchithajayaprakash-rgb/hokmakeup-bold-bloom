@@ -73,10 +73,8 @@ export function PinkSection() {
 
         {/* Full-block background placeholder with overlapping tiles */}
         <div className="relative">
-          <div className="relative aspect-[16/9] w-full rounded-3xl border-2 border-dashed border-hok bg-white/30 flex items-center justify-center">
-            <span className="text-sm font-body uppercase tracking-widest opacity-50">
-              Hero Image Placeholder
-            </span>
+          <div className="relative aspect-[4/1] w-full rounded-3xl border-2 border-dashed border-hok bg-white/30 flex items-center justify-center">
+            <span className="text-sm font-body uppercase tracking-widest opacity-50">Hero Image Placeholder</span>
           </div>
 
           {/* Overlapping tiles — partially over the edges */}
