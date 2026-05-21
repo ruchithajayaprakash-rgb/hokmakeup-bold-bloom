@@ -61,11 +61,10 @@ const PRODUCTS = [
 export function PinkSection() {
   return (
     <section className="bg-hok-pink text-hok">
-      {/* FIX 1: Split py into pt (padding-top) and pb (padding-bottom) to reduce the initial pink space */}
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 pt-6 pb-12 md:pt-10 md:pb-20">
         
-        {/* FIX 2: Changed top-20 to top-24 (mobile) and top-32 (desktop) so it completely clears the taller purple header */}
-        <div className="sticky top-24 md:top-32 z-30 bg-hok-pink -mx-6 px-6 md:-mx-12 md:px-12 py-4 mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        {/* THE FIX: Using exact pixel heights to match the purple header flawlessly */}
+        <div className="sticky top-[72px] md:top-[104px] z-30 bg-hok-pink -mx-6 px-6 md:-mx-12 md:px-12 py-4 mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-4xl lg:text-5xl max-w-[15ch]">
             BACK BY POPULAR DEMAND
           </h2>
@@ -74,18 +73,14 @@ export function PinkSection() {
           </p>
         </div>
 
-        {/* Master container: Dash border wraps everything (5 products + 1 button) */}
         <div className="relative rounded-[2rem] border-2 border-dashed border-hok bg-white/20 p-6 md:p-12">
           
-          {/* Hero Placeholder behind all items */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <span className="text-xs font-body uppercase tracking-[0.2em] opacity-10">Hero Image Placeholder</span>
           </div>
 
-          {/* Grid Layout: 3 columns on desktop ensures 3 items top, 3 items bottom */}
           <div className="relative grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             
-            {/* All 5 products are now in this primary grid */}
             {PRODUCTS.map((p) => (
               <div
                 key={p.name}
@@ -95,7 +90,6 @@ export function PinkSection() {
               </div>
             ))}
             
-            {/* The Shop All Tile takes the 6th slot, completing the 3x2 grid */}
             <ShopAllTile
               label="Shop all back in stock →"
               pastelClass="bg-[var(--hok-pastel-pink)]"
