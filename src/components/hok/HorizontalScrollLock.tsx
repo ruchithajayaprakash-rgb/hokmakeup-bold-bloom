@@ -2,31 +2,35 @@ import { useEffect, useRef, type ReactNode } from "react";
 
 /**
  * Horizontal scroll-lock section.
- * While the section is in view, vertical scroll is translated into horizontal
- * scroll across an inner track. When the track end is reached, vertical
- * scrolling resumes.
+ * Sticky element fills the viewport (100vh) so the page appears pinned —
+ * vertical scroll is consumed translating the inner track horizontally.
+ * Once the track is fully translated, the page resumes vertical scrolling.
  */
 export function HorizontalScrollLock({
   heading,
   bg,
   children,
+  sectionHeight = "100vh",
 }: {
   heading: string;
   bg: string;
   children: ReactNode;
+  sectionHeight?: string;
 }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
+    const sticky = stickyRef.current;
     const track = trackRef.current;
-    if (!wrapper || !track) return;
+    if (!wrapper || !sticky || !track) return;
 
     const setHeight = () => {
       const distance = track.scrollWidth - window.innerWidth;
-      // total scroll length = viewport height (sticky) + horizontal distance
-      wrapper.style.height = `${window.innerHeight + Math.max(0, distance)}px`;
+      const stickyH = sticky.offsetHeight;
+      wrapper.style.height = `${stickyH + Math.max(0, distance)}px`;
     };
     setHeight();
 
@@ -34,11 +38,7 @@ export function HorizontalScrollLock({
       const rect = wrapper.getBoundingClientRect();
       const distance = track.scrollWidth - window.innerWidth;
       if (distance <= 0) return;
-      // progress: 0 when top hits viewport top, 1 when we've scrolled `distance` past
-      const progress = Math.min(
-        1,
-        Math.max(0, -rect.top / distance),
-      );
+      const progress = Math.min(1, Math.max(0, -rect.top / distance));
       track.style.transform = `translate3d(${-progress * distance}px, 0, 0)`;
     };
 
@@ -53,16 +53,20 @@ export function HorizontalScrollLock({
 
   return (
     <section ref={wrapperRef} className={`relative ${bg} text-hok`}>
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
-        <div className="px-6 md:px-12 pt-20 md:pt-28">
-          <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(3rem,9vw,9rem)]">
+      <div
+        ref={stickyRef}
+        className="sticky top-0 overflow-hidden flex flex-col"
+        style={{ height: sectionHeight }}
+      >
+        <div className="px-6 md:px-12 pt-6 md:pt-8 shrink-0">
+          <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(2rem,5.5vw,5rem)]">
             {heading}
           </h2>
         </div>
-        <div className="flex-1 flex items-center overflow-hidden">
+        <div className="flex-1 min-h-0 flex items-center overflow-hidden pb-8 md:pb-10">
           <div
             ref={trackRef}
-            className="flex items-stretch gap-6 md:gap-10 pl-6 md:pl-12 pr-[12vw] will-change-transform"
+            className="flex h-full items-stretch gap-6 md:gap-8 pl-6 md:pl-12 will-change-transform"
             style={{ transition: "transform 0.05s linear" }}
           >
             {children}
