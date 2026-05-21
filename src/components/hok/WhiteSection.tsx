@@ -37,8 +37,7 @@ function HoverVideo() {
   const vRef = useRef<HTMLVideoElement>(null);
   return (
     <div
-      // Changed aspect ratio to 9/16 for Instagram Reel size
-      className="relative aspect-[9/16] w-full max-w-[350px] mx-auto overflow-hidden rounded-3xl border-2 border-dashed border-hok bg-white/40 group"
+      className="relative aspect-[9/16] w-full max-w-[320px] md:max-w-[380px] mx-auto overflow-hidden rounded-3xl border-2 border-dashed border-hok bg-white/40 group"
       onMouseEnter={() => vRef.current?.play().catch(() => {})}
       onMouseLeave={() => {
         const v = vRef.current;
@@ -48,11 +47,9 @@ function HoverVideo() {
         }
       }}
     >
-      {/* Thumbnail Placeholder: Visible by default, fades on hover */}
       <div className="absolute inset-0 flex items-center justify-center text-xs font-body uppercase tracking-widest opacity-60 group-hover:opacity-0 transition-opacity duration-300">
         Thumbnail Placeholder
       </div>
-      
       <video
         ref={vRef}
         className="absolute inset-0 h-full w-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -69,24 +66,29 @@ function HoverVideo() {
 
 export function WhiteSection() {
   return (
-    <section className="bg-hok-bg text-hok">
-      <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-12 md:py-20">
+    <section 
+      /* h-screen + overflow-y-auto traps the scroll snapping within THIS section only */
+      className="bg-hok-bg text-hok h-screen overflow-y-auto snap-y snap-mandatory scrollbar-hide"
+    >
+      <div className="mx-auto max-w-[1600px] px-6 md:px-12">
         
-        <div className="sticky top-20 z-30 bg-hok-bg -mx-6 px-6 md:-mx-12 md:px-12 py-6 mb-8 md:mb-12">
-          <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-5xl lg:text-6xl">
-            HOT RIGHT NOW
+        {/* Header stays sticky relative to this section's scroll container */}
+        <div className="sticky top-0 z-30 bg-hok-bg/95 backdrop-blur-sm -mx-6 px-6 md:-mx-12 md:px-12 py-8">
+          <h2 className="font-display font-extrabold leading-[1.1] text-3xl md:text-5xl lg:text-6xl uppercase">
+            Hot Right Now
           </h2>
         </div>
 
-        {/* Removed alternating order so videos/content stack consistently */}
-        <div className="flex flex-col gap-24 md:gap-36">
+        <div className="flex flex-col">
           {ROWS.map((r, i) => (
             <div
               key={r.name}
-              className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center"
+              /* snap-start locks the top of the grid to the top of the container */
+              className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center h-screen snap-start pb-20"
             >
               <HoverVideo />
-              <div className="flex flex-col gap-8">
+              
+              <div className="flex flex-col gap-6 md:gap-8">
                 <div className="text-xs font-body uppercase tracking-[0.3em] opacity-60">
                   0{i + 1} / Hot Drop
                 </div>
@@ -94,6 +96,7 @@ export function WhiteSection() {
                   {r.name}
                 </h3>
                 <PriceLine sale={r.sale} mrp={r.mrp} discount={r.discount} size="lg" />
+                
                 <div className="rounded-2xl border-2 border-hok p-6 md:p-8 bg-[var(--hok-pastel-purple)]/30">
                   <div className="text-xs font-body uppercase tracking-widest opacity-60 mb-3">
                     Why you'll love it
