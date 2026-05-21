@@ -65,7 +65,7 @@ export function HorizontalScrollLock({
         className="sticky top-0 overflow-hidden flex flex-col"
         style={{ height: sectionHeight }}
       >
-        <div className="px-6 md:px-12 pt-6 md:pt-8 shrink-0">
+        <div className="px-6 md:px-12 pt-6 md:pt-8 pb-8 md:pb-12 shrink-0">
           <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(2rem,5.5vw,5rem)]">
             {heading}
           </h2>
