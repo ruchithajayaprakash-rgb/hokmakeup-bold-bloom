@@ -71,7 +71,7 @@ export function ShopAllTile({
     <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={`relative flex h-full w-full items-center justify-center overflow-hidden rounded-2xl border-2 border-hok p-8 transition-colors duration-500 ${
+      className={`relative flex h-full min-h-[480px] md:min-h-[560px] w-full items-center justify-center overflow-hidden rounded-2xl border-2 border-hok p-8 transition-colors duration-500 ${
         hover ? boldClass : pastelClass
       }`}
     >
