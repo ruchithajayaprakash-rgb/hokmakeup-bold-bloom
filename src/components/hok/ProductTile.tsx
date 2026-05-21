@@ -71,18 +71,19 @@ export function ShopAllTile({
     <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={`relative flex h-full w-full items-center justify-center overflow-hidden rounded-2xl border-2 border-hok p-8 transition-colors duration-500 ${
+      className={`relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-2xl border-2 border-hok p-8 transition-colors duration-500 ${
         hover ? boldClass : pastelClass
       }`}
     >
       <span
         className={`text-center font-display font-extrabold leading-[0.95] transition-all duration-500 ${
-          hover ? "text-4xl md:text-6xl scale-110" : "text-2xl md:text-3xl scale-100"
+          hover ? "text-3xl md:text-5xl scale-105" : "text-2xl md:text-3xl scale-100"
         }`}
       >
         {label}
       </span>
     </div>
+
   );
 }
 

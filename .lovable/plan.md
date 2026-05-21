@@ -1,14 +1,13 @@
-# Fix category placeholder cutoff in PurpleHero
+## Shrink "Shop All" tile to match product tile height
 
-The dashed category tiles at the top of the purple hero section are getting clipped by the header above and by the section's own `overflow-hidden`.
+The Shop All tile currently stretches to the full track height (`h-full`), while product tiles only occupy the 3:4 image area plus a short text block below. Result: the Shop All tile is visibly taller than every product tile in both New Arrivals and Brands On Board.
 
-## Changes
+### Change
 
-Only file touched: `src/components/hok/PurpleHero.tsx`.
+Only file touched: `src/components/hok/ProductTile.tsx` — `ShopAllTile`.
 
-- Add top padding to the categories container so tiles sit below the fixed header: `pt-16 md:pt-20`.
-- Increase the categories container height slightly so the lower-row tiles aren't cropped at the bottom: `h-[44vh] min-h-[380px] md:h-[40vh]`.
-- Nudge the top-row tile positions down (`top: 18%` instead of `12–15%`) and the bottom-row tiles up (`top: 58%` instead of `62%`) so all 7 tiles fit comfortably inside the container.
-- Keep `overflow-hidden` (intentional for the floating-tiles aesthetic) and leave the hero video block untouched.
+- Replace `flex h-full w-full` with `flex aspect-[3/4] w-full` so the tile matches the product image's 3:4 box (same width, same height as a product tile's image area).
+- Drop the outer `h-full` reliance; the wrapper `<div>` around `<ShopAllTile />` in `NewArrivalsSection.tsx` and `YellowSection.tsx` can stay as-is (no edits needed) since the tile now sizes itself.
+- Optionally tighten the hover scale to keep large text from overflowing the smaller box (`scale-105` instead of `scale-110`).
 
-No header, routing, or behavior changes.
+No changes to `HorizontalScrollLock`, section files, layout, or behavior.
