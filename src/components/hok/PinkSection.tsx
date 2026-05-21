@@ -61,4 +61,48 @@ const PRODUCTS = [
 export function PinkSection() {
   return (
     <section className="bg-hok-pink text-hok">
-      <div className="mx-auto max-w-
+      <div className="mx-auto max-w-[1600px] px-6 md:px-12 pt-6 pb-12 md:pt-10 md:pb-20">
+        
+        {/* THE FIX: Using exact pixel heights to match the purple header flawlessly */}
+        <div className="sticky top-[72px] md:top-[104px] z-30 bg-hok-pink -mx-6 px-6 md:-mx-12 md:px-12 py-4 mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+          
+          {/* Added <br /> tag to force the line break exactly where you want it */}
+          <h2 className="font-display leading-[1.1] text-3xl md:text-4xl lg:text-5xl shrink-0">
+            BACK BY <br /> POPULAR DEMAND
+          </h2>
+          
+          <p className="font-body text-xs md:text-sm max-w-sm opacity-80 md:text-right md:pb-1">
+            The cult favourites you kept asking for — restocked, refreshed and ready to ship.
+          </p>
+        </div>
+
+        <div className="relative rounded-[2rem] border-2 border-dashed border-hok bg-white/20 p-6 md:p-12">
+          
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="text-xs font-body uppercase tracking-[0.2em] opacity-10">Hero Image Placeholder</span>
+          </div>
+
+          <div className="relative grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+            
+            {PRODUCTS.map((p) => (
+              <div
+                key={p.name}
+                className="bg-white/90 rounded-2xl p-3 md:p-5 shadow-xl backdrop-blur-md"
+              >
+                <ProductTile {...p} />
+              </div>
+            ))}
+            
+            <ShopAllTile
+              label="Shop all back in stock →"
+              pastelClass="bg-[var(--hok-pastel-pink)]"
+              boldClass="bg-hok-text text-white"
+            />
+            
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
