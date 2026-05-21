@@ -42,7 +42,8 @@
   --color-hok-pastel-yellow: var(--hok-pastel-yellow);
   --color-hok-pastel-pink: var(--hok-pastel-pink);
 
-  --font-display: "Syne", "Clash Display", system-ui, sans-serif;
+  /* THE FIX: Changed to Notable. Lovable will auto-load it! */
+  --font-display: "Notable", system-ui, sans-serif;
   --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
 }
 
