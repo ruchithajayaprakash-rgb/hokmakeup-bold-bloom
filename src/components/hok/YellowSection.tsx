@@ -7,11 +7,9 @@ export function YellowSection() {
       {Array.from({ length: 8 }).map((_, i) => (
         <div
           key={i}
-          className="h-full w-[68vw] sm:w-[40vw] md:w-[28vw] lg:w-[24vw] shrink-0 rounded-2xl border-2 border-dashed border-hok bg-white/40 flex items-center justify-center"
+          className="relative aspect-[3/4] sm:w-[40vw] md:w-[28vw] lg:w-[24vw] shrink-0 rounded-2xl border-2 border-dashed border-hok bg-white/40 flex items-center justify-center"
         >
-          <span className="text-xs font-body uppercase tracking-widest opacity-50">
-            Brand Logo
-          </span>
+          <span className="text-xs font-body uppercase tracking-widest opacity-50">Brand Logo</span>
         </div>
       ))}
       <div className="h-full w-[68vw] sm:w-[40vw] md:w-[28vw] lg:w-[24vw] shrink-0">
