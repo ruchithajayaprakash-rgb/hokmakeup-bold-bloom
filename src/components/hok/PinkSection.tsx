@@ -62,9 +62,9 @@ export function PinkSection() {
   return (
     <section className="bg-hok-pink text-hok">
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-24 md:py-36">
-        {/* Header Text - Smaller heading and paragraph */}
+        {/* Header Text - Using standard, safe Tailwind size classes to prevent errors */}
         <div className="mb-16 md:mb-24 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <h2 className="font-display font-extrabold leading-[1.1] text-[clamp(2rem,4.5vw,3.5rem)] max-w-[15ch]">
+          <h2 className="font-display font-extrabold leading-[1.1] text-4xl md:text-5xl lg:text-6xl max-w-[15ch]">
             Back by Popular Demand
           </h2>
           <p className="font-body text-sm md:text-base max-w-sm opacity-80">
