@@ -10,7 +10,7 @@ export function HorizontalScrollLock({
   heading,
   bg,
   children,
-  sectionHeight = "100vh",
+  sectionHeight = "h-fit", // 1. Changed default from 100vh to h-fit
 }: {
   heading: string;
   bg: string;
@@ -62,18 +62,20 @@ export function HorizontalScrollLock({
     <section ref={wrapperRef} className={`relative ${bg} text-hok`}>
       <div
         ref={stickyRef}
+        /* 2. Changed height from calc(sectionHeight - 88px) to just sectionHeight (h-fit) */
         className="sticky overflow-hidden flex flex-col top-[68px] md:top-[88px]"
-        style={{ height: `calc(${sectionHeight} - 88px)` }}
+        style={{ height: sectionHeight }} 
       >
         <div className="px-6 md:px-12 pt-6 md:pt-8 pb-8 md:pb-12 shrink-0">
           <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(2rem,5.5vw,5rem)]">
             {heading}
           </h2>
         </div>
-        <div className="flex-1 min-h-0 flex items-stretch overflow-hidden pb-8 md:pb-10">
+        {/* 3. Changed items-stretch to items-start so tiles don't get forced to grow tall */}
+        <div className="flex-1 min-h-0 flex items-start overflow-hidden pb-8 md:pb-10">
           <div
             ref={trackRef}
-            className="flex h-full min-h-0 items-stretch gap-6 md:gap-8 px-6 md:px-12 will-change-transform"
+            className="flex h-full min-h-0 items-start gap-6 md:gap-8 px-6 md:px-12 will-change-transform"
             style={{ transition: "transform 0.05s linear" }}
           >
             {children}
@@ -81,6 +83,5 @@ export function HorizontalScrollLock({
         </div>
       </div>
     </section>
-
   );
 }
