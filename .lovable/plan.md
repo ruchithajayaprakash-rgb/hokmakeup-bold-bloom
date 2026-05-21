@@ -1,20 +1,20 @@
-# Fix header icons being cut off
+# Fix clipped placeholders in hero categories section
 
 ## Problem
 
-In the screenshot, the rightmost header icons (heart, bag) sit flush against the viewport edge and the bag icon is partially clipped by the vertical scrollbar. The header uses `max-w-[1600px]` with `px-6 md:px-12`, but at ~1261px viewport the inner row stretches edge-to-edge and the scrollbar eats into the last icon.
+The sticky purple header overlays the top of the categories area, and the topmost dashed placeholder tiles (positioned at `top: 12–20%`) are clipped by the header. The container also uses `overflow-hidden`, which hard-crops anything that bleeds past its edges.
 
 ## Fix
 
-In `src/components/hok/Header.tsx`:
+In `src/components/hok/PurpleHero.tsx`:
 
-- Bump horizontal padding so icons never touch the edge: `px-6 md:px-10 lg:px-14`.
-- Add `pr-[max(theme(spacing.6),env(safe-area-inset-right))]` style fallback via an extra `pr-8 md:pr-12` on the nav itself, or simply increase the container's right padding to `pr-8 md:pr-14` so there's breathing room against the scrollbar.
-- Give the nav `gap-3 md:gap-6` (slightly tighter) so 4 icons + extra right padding fit comfortably.
-- Ensure icon buttons keep their `p-2` hit target but the wrapper has `shrink-0` so they never get squeezed.
+- Add top padding to the categories container so floats start below the sticky header: `pt-10 md:pt-16`.
+- Slightly increase the container height to compensate (`h-[46vh] min-h-[380px] md:h-[42vh]`) so the lower-row placeholders aren't pushed into the hero block.
+- Nudge the topmost float positions down a touch (`top: 18%` instead of `12–15%`) so they sit fully inside the padded area rather than relying on padding alone.
+- Keep `overflow-hidden` (intentional for the floating-tiles effect) but ensure no tile's bounding box extends above `top: 8%` after the size offsets.
 
 ## Technical notes
 
-- Only file touched: `src/components/hok/Header.tsx`.
-- No layout, route, or behavior changes.
-- Verify at 1261px viewport (current preview) that all 4 icons are fully visible with clear space to the right.
+- Only file touched: `src/components/hok/PurpleHero.tsx`.
+- No header changes, no layout/route changes.
+- Verify at 1261×853 viewport that all 7 dashed placeholders are fully visible with clear space below the header.
