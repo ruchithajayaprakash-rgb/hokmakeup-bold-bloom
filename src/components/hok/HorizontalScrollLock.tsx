@@ -1,25 +1,38 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /**
  * Horizontal scroll-lock section.
- * Sticky element fills the viewport (100vh) so the page appears pinned —
- * vertical scroll is consumed translating the inner track horizontally.
- * Once the track is fully translated, the page resumes vertical scrolling.
+ * Sticky element pins below the site header — vertical scroll is consumed
+ * translating the inner track horizontally. Once the track is fully
+ * translated, the page resumes vertical scrolling.
  */
 export function HorizontalScrollLock({
   heading,
   bg,
   children,
-  sectionHeight = "100vh",
 }: {
   heading: string;
   bg: string;
   children: ReactNode;
-  sectionHeight?: string;
 }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const [headerOffset, setHeaderOffset] = useState(0);
+
+  useEffect(() => {
+    const header = document.querySelector("header");
+    if (!header) return;
+    const update = () => setHeaderOffset(header.getBoundingClientRect().height);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(header);
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
@@ -33,7 +46,7 @@ export function HorizontalScrollLock({
       const rect = wrapper.getBoundingClientRect();
       const distance = getDistance();
       if (distance <= 0) return;
-      const progress = Math.min(1, Math.max(0, -rect.top / distance));
+      const progress = Math.min(1, Math.max(0, (headerOffset - rect.top) / distance));
       track.style.transform = `translate3d(${-progress * distance}px, 0, 0)`;
     };
 
@@ -56,14 +69,14 @@ export function HorizontalScrollLock({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", setHeight);
     };
-  }, []);
+  }, [headerOffset]);
 
   return (
     <section ref={wrapperRef} className={`relative ${bg} text-hok`}>
       <div
         ref={stickyRef}
-        className="sticky top-0 overflow-hidden flex flex-col"
-        style={{ height: sectionHeight }}
+        className="sticky overflow-hidden flex flex-col"
+        style={{ top: headerOffset, height: `calc(100vh - ${headerOffset}px)` }}
       >
         <div className="px-6 md:px-12 pt-6 md:pt-8 pb-8 md:pb-12 shrink-0">
           <h2 className="font-display font-extrabold leading-[0.9] text-[clamp(2rem,5.5vw,5rem)]">
