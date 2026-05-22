@@ -115,4 +115,10 @@ export function PurpleHero() {
         {/* Custom cursor */}
         <div
           ref={cursorRef}
-          className={`pointer-events-none absolute left-0 top-0
+          className={`pointer-events-none absolute left-0 top-0 h-[120px] w-[120px] rounded-full border-2 border-hok bg-white/10 backdrop-blur-sm transition-opacity duration-200 ${cursorActive ? "opacity-100" : "opacity-0"}`}
+        />
+      </div>
+    </section>
+  );
+}
+
