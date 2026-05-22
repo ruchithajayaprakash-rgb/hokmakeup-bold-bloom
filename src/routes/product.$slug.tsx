@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+// Standard HOK components
 import { Header } from "@/components/hok/Header";
 import { ProductTile } from "@/components/hok/ProductTile";
 import { Star, ThumbsUp, ChevronDown, CheckCircle2 } from "lucide-react";
 
-// Route definition
 export const Route = createFileRoute("/product/$slug")({
   component: ProductPage,
 });
 
+// Carousel Images
 const IMAGES = [
   "https://images.unsplash.com/photo-1625088981476-88abeb9e9d69?auto=format&fit=crop&q=80&w=800",
   "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=800",
@@ -43,4 +44,27 @@ const SIMILAR_PRODUCTS = [
     mrp: "₹1,800",
     discount: "19% OFF",
     shades: [
-      {
+      { label: "Light Pink", color: "#F8C8D8" },
+      { label: "Dark Pink", color: "#D9457C" },
+    ],
+  },
+  {
+    name: "Revolution Highlight",
+    sale: "₹765",
+    mrp: "₹850",
+    discount: "10% OFF",
+  },
+  {
+    name: "Milani Setting Spray",
+    sale: "₹1,935",
+    mrp: "₹2,150",
+    discount: "10% OFF",
+  },
+];
+
+function ProductPage() {
+  const title = "Revolution Kiss Drip Water Lip Tint";
+  const [activeImage, setActiveImage] = useState(0);
+
+  return (
+    <main className="min-h-screen bg-hok-pink text-hok pb-20">
