@@ -2,51 +2,61 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/hok/Header";
 import { PriceLine } from "@/components/hok/Price";
 
+// This matches the path: src/routes/product/$slug.tsx
 export const Route = createFileRoute("/product/$slug")({
   component: ProductPage,
-  head: ({ params }) => ({
-    meta: [{ title: `Revolution Kiss Drip Water Lip Tint — HOKmakeup` }],
-  }),
 });
 
-// Mock Data for the UI sections
-const SWATCHES = [
-  { id: 1, color: "#8B0000", selected: true }, // Melon Mist / Cherry Ade equivalent
-  { id: 2, color: "#000000", selected: false },
-  { id: 3, color: "#C71585", selected: false },
-  { id: 4, color: "#B22222", selected: false },
-  { id: 5, color: "#800080", selected: false },
-  { id: 6, color: "#DC143C", selected: false },
-  { id: 7, color: "#660000", selected: false },
-];
-
-const REVIEWS = [
-  { id: 1, rating: 5, title: '"Good and affordable"', text: "Good tint and affordable for daily use.", author: "Simran Rajput", verified: true, date: "13 Apr, 2026" },
-  { id: 2, rating: 5, title: '"Love"', text: "Beautiful shade and lasts quite a while.", author: "Anonymous", verified: true, date: "13 Apr, 2026" },
-  { id: 3, rating: 5, title: '"Must have product"', text: "Really love the consistency.", author: "Priya S.", verified: true, date: "12 Apr, 2026" },
-  { id: 4, rating: 4, title: '"Best blush I\'ve ever used"', text: "Works great on cheeks too!", author: "Khushi Khanna", verified: true, date: "12 Apr, 2026" },
-];
-
-const RELATED_PRODUCTS = [
-  { id: 1, name: "Revolution Pout Bomb", price: "₹550", image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=300" },
-  { id: 2, name: "Makeup Obsession Gloss", price: "₹450", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=300" },
-  { id: 3, name: "Relove Baby Gloss", price: "₹350", image: "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&q=80&w=300" },
-  { id: 4, name: "Revolution Pro Lip Oil", price: "₹850", image: "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&q=80&w=300" },
-];
-
 function ProductPage() {
-  const { slug } = Route.useParams();
-  const title = "Revolution Kiss Drip Water Lip Tint";
+  const title = "Revolution Kiss Drip Water Lip Tint - Melon Mist";
 
   return (
     <main className="min-h-screen bg-hok-pink text-hok">
       <Header />
       <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
-        
-        {/* Top Section: Image & Main Details */}
+        {/* Top Product Section */}
         <div className="grid gap-12 md:grid-cols-2">
-          
-          {/* Left: Product Image */}
-          <div className="flex aspect-[4/5] items-center justify-center overflow-hidden rounded-3xl border-2 border-dashed border-hok bg-white/40 sticky top-24 h-fit">
-            <img 
-              src="
+          <div className="aspect-[4/5] rounded-3xl border-2 border-dashed border-hok bg-white/40 sticky top-24 h-fit overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1625088981476-88abeb9e9d69?auto=format&fit=crop&q=80&w=800" alt={title} className="h-full w-full object-cover mix-blend-multiply" />
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <Link to="/" className="text-sm opacity-70 hover:opacity-100">← Back</Link>
+            <h1 className="font-display text-4xl font-extrabold capitalize leading-tight">{title}</h1>
+            <PriceLine sale="₹716" mrp="₹795" discount="10% OFF" size="lg" />
+            
+            {/* Shade Selection Mock */}
+            <div className="space-y-2">
+              <label className="text-sm font-bold uppercase">Select Shade</label>
+              <div className="flex gap-2">
+                {[1, 2, 3, 4].map((i) => <div key={i} className="w-10 h-10 rounded-full border-2 border-hok bg-hok/20 cursor-pointer" />)}
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <button className="flex-1 bg-hok-text text-white py-4 rounded-xl font-bold">ADD TO BAG</button>
+              <button className="flex-1 border-2 border-hok py-4 rounded-xl font-bold">WISHLIST</button>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="font-bold">Why you'll Love it:</h3>
+              <ul className="list-disc pl-5 text-sm space-y-1 opacity-80">
+                <li>Sheer, buildable color for a natural to glossy finish</li>
+                <li>Lightweight, water-based formula</li>
+                <li>Juicy, glass-like shine</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Reviews Section Placeholder */}
+        <div className="mt-24 border-t-2 border-dashed border-hok/20 pt-16">
+          <h2 className="font-display text-2xl font-bold mb-8">Reviews</h2>
+          <div className="h-64 overflow-y-auto bg-white/30 rounded-2xl p-6">
+            <p className="opacity-60 italic">Reviews list will render here...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
