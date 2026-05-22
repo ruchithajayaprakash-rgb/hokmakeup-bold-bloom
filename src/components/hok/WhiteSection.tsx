@@ -102,7 +102,7 @@ export function WhiteSection() {
                     {r.name}
                   </h3>
                   
-                  <PriceLine sale={r.sale} mrp={r.mrp} discount={r.discount} size="md" />
+                  <PriceLine sale={r.sale} mrp={r.mrp} discount={r.discount} size="base" />
                   
                   <div className="rounded-2xl border-2 border-hok p-5 md:p-7 bg-[var(--hok-pastel-purple)]/30">
                     <div className="text-[10px] font-body uppercase tracking-widest opacity-60 mb-2">
@@ -138,4 +138,13 @@ export function WhiteSection() {
               <div className="text-xs font-body opacity-80">Brands</div>
             </div>
             <div>
-              <div className="text-
+              <div className="text-3xl md:text-4xl font-black font-display mb-1">100%</div>
+              <div className="text-xs font-body opacity-80">Authentic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
