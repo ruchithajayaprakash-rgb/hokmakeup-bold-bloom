@@ -65,7 +65,7 @@ export function PurpleHero() {
         
         {/* Centered Small Heading */}
         <div className="pb-8 text-center">
-          <h2 className="font-display font-extrabold text-lg md:text-xl tracking-widest uppercase opacity-80">
+          <h2 className="font-display text-lg md:text-xl tracking-widest uppercase opacity-80">
             Categories
           </h2>
         </div>
@@ -89,11 +89,22 @@ export function PurpleHero() {
           >
             <source src="" type="video/mp4" />
           </video>
-          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <h1 className="font-display font-extrabold leading-[0.95] text-[clamp(2.5rem,7vw,7rem)] max-w-[14ch]">
+          
+          {/* UPDATED: Changed alignment to items-end and text-right, added padding */}
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-end justify-center text-right px-8 md:px-16">
+            
+            {/* UPDATED: Sized down, removed extrabold, capped width so it wraps nicely */}
+            <h1 className="font-display leading-[1.1] text-2xl md:text-3xl lg:text-4xl max-w-lg">
               Beauty is for all, so why restrict it to borders?
             </h1>
-            <div className="mt-8 font-display text-2xl md:text-4xl font-bold">HOKmakeup</div>
+            
+            {/* UPDATED: Replaced text with SVG logo */}
+            <img 
+              src="/file.svg" 
+              alt="HOKmakeup Logo" 
+              className="mt-6 h-12 md:h-16 w-auto object-contain" 
+            />
+            
           </div>
         </div>
 
