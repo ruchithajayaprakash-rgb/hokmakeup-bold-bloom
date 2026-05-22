@@ -1,23 +1,25 @@
 import { useRef, useState, type MouseEvent } from "react";
 
-// Adjusted 'left' values to ensure they are centered as a group with equal margins
+// UPDATED: Added the exact 'image' file paths matching your uploads
 const CATEGORIES = [
-  { name: "New Arrivals", top: "25%", left: "15%", size: "w-24 h-24 md:w-32 md:h-32" },
-  { name: "Brands", top: "60%", left: "25%", size: "w-20 h-20 md:w-28 md:h-28" },
-  { name: "Makeup", top: "28%", left: "38%", size: "w-28 h-28 md:w-40 md:h-40" },
-  { name: "Skin", top: "62%", left: "50%", size: "w-24 h-24 md:w-32 md:h-32" },
-  { name: "Hair", top: "25%", left: "62%", size: "w-20 h-20 md:w-28 md:h-28" },
-  { name: "Fragrance", top: "58%", left: "75%", size: "w-28 h-28 md:w-36 md:h-36" },
-  { name: "Offers", top: "26%", left: "85%", size: "w-20 h-20 md:w-28 md:h-28" },
+  { name: "New Arrivals", image: "/newarrivals.png", top: "25%", left: "15%", size: "w-24 h-24 md:w-32 md:h-32" },
+  { name: "Brands", image: "/brands.png", top: "60%", left: "25%", size: "w-20 h-20 md:w-28 md:h-28" },
+  { name: "Makeup", image: "/makeup.png", top: "28%", left: "38%", size: "w-28 h-28 md:w-40 md:h-40" },
+  { name: "Skin", image: "/skin.png", top: "62%", left: "50%", size: "w-24 h-24 md:w-32 md:h-32" },
+  { name: "Hair", image: "/hair.png", top: "25%", left: "62%", size: "w-20 h-20 md:w-28 md:h-28" },
+  { name: "Fragrance", image: "/fragrance.png", top: "58%", left: "75%", size: "w-28 h-28 md:w-36 md:h-36" },
+  { name: "Offers", image: "/offers.png", top: "26%", left: "85%", size: "w-20 h-20 md:w-28 md:h-28" },
 ];
 
 function CategoryFloat({
   name,
+  image, // UPDATED: Added image to destructured props
   top,
   left,
   size,
 }: {
   name: string;
+  image: string; // UPDATED: Added image to types
   top: string;
   left: string;
   size: string;
@@ -30,9 +32,16 @@ function CategoryFloat({
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
+      {/* UPDATED: Added 'overflow-hidden' and replaced empty div with an actual <img> tag */}
       <div
-        className={`${size} rounded-2xl border-2 border-dashed border-hok bg-white/15 backdrop-blur-[1px] transition-transform duration-300 hover:scale-105 cursor-pointer`}
-      />
+        className={`${size} overflow-hidden rounded-2xl border-2 border-dashed border-hok bg-white/15 backdrop-blur-[1px] transition-transform duration-300 hover:scale-105 cursor-pointer`}
+      >
+        <img 
+          src={image} 
+          alt={name} 
+          className="h-full w-full object-cover" 
+        />
+      </div>
       {hover && (
         <div className="animate-hok-pop absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-full bg-hok-text px-4 py-2 text-sm font-semibold text-white shadow-lg z-50">
           {name}
@@ -90,34 +99,20 @@ export function PurpleHero() {
             <source src="" type="video/mp4" />
           </video>
           
-          {/* UPDATED: Changed alignment to items-end and text-right, added padding */}
+          {/* Alignment elements */}
           <div className="pointer-events-none absolute inset-0 flex flex-col items-end justify-center text-right px-8 md:px-16">
-            
-            {/* UPDATED: Sized down, removed extrabold, capped width so it wraps nicely */}
             <h1 className="font-display leading-[1.1] text-2xl md:text-3xl lg:text-4xl max-w-lg">
               Beauty is for all, so why restrict it to borders?
             </h1>
-            
-            {/* UPDATED: Replaced text with SVG logo */}
             <img 
               src="/file.svg" 
               alt="HOKmakeup Logo" 
               className="mt-6 h-12 md:h-16 w-auto object-contain" 
             />
-            
           </div>
         </div>
 
         {/* Custom cursor */}
         <div
           ref={cursorRef}
-          className={`pointer-events-none absolute left-0 top-0 h-[120px] w-[120px] rounded-full bg-hok-text text-white flex items-center justify-center text-sm font-bold font-body transition-opacity duration-200 ${
-            cursorActive ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          Shop Now
-        </div>
-      </div>
-    </section>
-  );
-}
+          className={`pointer-events-none absolute left-0 top-0
