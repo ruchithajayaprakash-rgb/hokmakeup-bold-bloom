@@ -1,6 +1,6 @@
 import { useRef, useState, type MouseEvent } from "react";
 
-// UPDATED: Added the exact 'image' file paths matching your uploads
+// Categories data with local image paths uploaded via GitHub
 const CATEGORIES = [
   { name: "New Arrivals", image: "/newarrivals.png", top: "25%", left: "15%", size: "w-24 h-24 md:w-32 md:h-32" },
   { name: "Brands", image: "/brands.png", top: "60%", left: "25%", size: "w-20 h-20 md:w-28 md:h-28" },
@@ -13,13 +13,13 @@ const CATEGORIES = [
 
 function CategoryFloat({
   name,
-  image, // UPDATED: Added image to destructured props
+  image,
   top,
   left,
   size,
 }: {
   name: string;
-  image: string; // UPDATED: Added image to types
+  image: string;
   top: string;
   left: string;
   size: string;
@@ -32,7 +32,6 @@ function CategoryFloat({
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      {/* UPDATED: Added 'overflow-hidden' and replaced empty div with an actual <img> tag */}
       <div
         className={`${size} overflow-hidden rounded-2xl border-2 border-dashed border-hok bg-white/15 backdrop-blur-[1px] transition-transform duration-300 hover:scale-105 cursor-pointer`}
       >
@@ -88,26 +87,32 @@ export function PurpleHero() {
         onMouseLeave={() => setCursorActive(false)}
         onMouseMove={onMove}
       >
-        {/* Video placeholder */}
-        <div className="absolute inset-0 m-6 md:m-10 rounded-3xl border-2 border-dashed border-hok bg-white/10 flex items-center justify-center backdrop-blur-sm">
+        {/* Video placeholder container */}
+        <div className="absolute inset-0 m-6 md:m-10 rounded-3xl border-2 border-dashed border-hok bg-white/10 flex items-center justify-center backdrop-blur-sm overflow-hidden">
+          
+          {/* FINAL UPDATE: Full Background Autoplay, Loop, Muted Video Configuration */}
           <video
-            className="h-full w-full rounded-3xl object-cover"
-            controls
-            preload="none"
-            poster=""
+            className="absolute inset-0 h-full w-full object-cover rounded-3xl z-0"
+            autoPlay
+            loop
+            muted
+            playsInline
           >
-            <source src="" type="video/mp4" />
+            <source 
+              src="https://hokmakeup.com/cdn/shop/videos/c/vp/948bc4f786934027bc41baa59f0d4e06/948bc4f786934027bc41baa59f0d4e06.HD-720p-4.5Mbps-82999903.mp4?v=0" 
+              type="video/mp4" 
+            />
           </video>
           
-          {/* Alignment elements */}
-          <div className="pointer-events-none absolute inset-0 flex flex-col items-end justify-center text-right px-8 md:px-16">
-            <h1 className="font-display leading-[1.1] text-2xl md:text-3xl lg:text-4xl max-w-lg">
+          {/* Alignment elements (Text and Logo overlays over video) */}
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-end justify-center text-right px-8 md:px-16 z-10">
+            <h1 className="font-display leading-[1.1] text-2xl md:text-3xl lg:text-4xl max-w-lg text-white drop-shadow-md">
               Beauty is for all, so why restrict it to borders?
             </h1>
             <img 
               src="/file.svg" 
               alt="HOKmakeup Logo" 
-              className="mt-6 h-12 md:h-16 w-auto object-contain" 
+              className="mt-6 h-12 md:h-16 w-auto object-contain drop-shadow-md" 
             />
           </div>
         </div>
@@ -115,7 +120,7 @@ export function PurpleHero() {
         {/* Custom cursor */}
         <div
           ref={cursorRef}
-          className={`pointer-events-none absolute left-0 top-0 flex h-[120px] w-[120px] items-center justify-center rounded-full border-2 border-hok bg-white/10 backdrop-blur-sm transition-opacity duration-200 ${cursorActive ? "opacity-100" : "opacity-0"}`}
+          className={`pointer-events-none absolute left-0 top-0 flex h-[120px] w-[120px] items-center justify-center rounded-full border-2 border-hok bg-white/10 backdrop-blur-sm transition-opacity duration-200 z-20 ${cursorActive ? "opacity-100" : "opacity-0"}`}
         >
           <span className="font-display text-sm font-semibold uppercase tracking-widest text-white text-center leading-tight">
             Shop<br />Now
@@ -125,4 +130,3 @@ export function PurpleHero() {
     </section>
   );
 }
-
