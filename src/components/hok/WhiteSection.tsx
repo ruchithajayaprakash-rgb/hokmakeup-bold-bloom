@@ -102,7 +102,7 @@ export function WhiteSection() {
                     {r.name}
                   </h3>
                   
-                  <PriceLine sale={r.sale} mrp={r.mrp} discount={r.discount} size="md" />
+                  <PriceLine sale={r.sale} mrp={r.mrp} discount={r.discount} size="base" />
                   
                   <div className="rounded-2xl border-2 border-hok p-5 md:p-7 bg-[var(--hok-pastel-purple)]/30">
                     <div className="text-[10px] font-body uppercase tracking-widest opacity-60 mb-2">
