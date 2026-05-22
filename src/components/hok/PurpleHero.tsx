@@ -117,8 +117,8 @@ export function PurpleHero() {
           ref={cursorRef}
           className={`pointer-events-none absolute left-0 top-0 flex h-[120px] w-[120px] items-center justify-center rounded-full border-2 border-hok bg-white/10 backdrop-blur-sm transition-opacity duration-200 ${cursorActive ? "opacity-100" : "opacity-0"}`}
         >
-          <span className="font-display text-sm font-semibold uppercase tracking-widest text-white">
-            Shop Now
+          <span className="font-display text-sm font-semibold uppercase tracking-widest text-white text-center leading-tight">
+            Shop<br />Now
           </span>
         </div>
       </div>
