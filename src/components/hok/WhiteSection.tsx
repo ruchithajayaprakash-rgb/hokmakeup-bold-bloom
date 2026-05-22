@@ -138,4 +138,13 @@ export function WhiteSection() {
               <div className="text-xs font-body opacity-80">Brands</div>
             </div>
             <div>
-              <div className="text-
+              <div className="text-3xl md:text-4xl font-black font-display mb-1">100%</div>
+              <div className="text-xs font-body opacity-80">Authentic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
