@@ -6,8 +6,9 @@ import {
   Smartphone, Banknote, Landmark, Gift, X
 } from "lucide-react";
 
-export const Route = createFileRoute("/checkout")({
-  component: CheckoutPage,
+// Changed to /cart
+export const Route = createFileRoute("/cart")({
+  component: CartPage,
 });
 
 const SUGGESTED_PRODUCTS = [
@@ -16,7 +17,8 @@ const SUGGESTED_PRODUCTS = [
   { name: "Revolution Highlight", price: "₹765", image: "https://images.unsplash.com/photo-1625088981476-88abeb9e9d69?w=200" },
 ];
 
-export function CheckoutPage() {
+// Removed 'export' from this function to satisfy the static crawler
+function CartPage() {
   const [step, setStep] = useState<'bag' | 'address' | 'payment'>('bag');
   const [paymentMethod, setPaymentMethod] = useState('upi');
   const [timeLeft, setTimeLeft] = useState(600);
