@@ -66,4 +66,15 @@ export function NewsletterModal() {
               />
               <button
                 type="submit"
-                className="rounded
+                className="rounded-full bg-hok-text text-white px-6 py-3 font-body text-sm md:text-base hover:opacity-90 transition-opacity"
+              >
+                Sign up
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
