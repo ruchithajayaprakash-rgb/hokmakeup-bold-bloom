@@ -209,7 +209,7 @@ function CartPage() {
               <div className="flex flex-col items-center gap-1 text-center"><CheckCircle2 size={14}/><span className="text-[8px] font-bold uppercase">Secure</span></div>
               <div className="flex flex-col items-center gap-1 text-center"><RefreshCw size={14}/><span className="text-[8px] font-bold uppercase">Returns</span></div>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
     </div>
