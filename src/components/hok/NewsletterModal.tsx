@@ -41,7 +41,8 @@ export function NewsletterModal() {
           </div>
         ) : (
           <>
-            <h3 className="font-display text-3xl md:text-5xl leading-[0.95] mb-4">
+            {/* UPDATED: Reduced font size from text-3xl md:text-5xl */}
+            <h3 className="font-display text-2xl md:text-4xl leading-[0.95] mb-4">
               Don't miss an update!
             </h3>
             <p className="font-body text-sm md:text-base opacity-75 mb-7">
