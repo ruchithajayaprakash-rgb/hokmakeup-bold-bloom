@@ -2,7 +2,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 
 /**
  * Horizontal scroll-lock section.
- * Sticky element fills the viewport (100vh) so the page appears pinned —
+ * Sticky element fills the viewport (h-fit) so the page appears pinned —
  * vertical scroll is consumed translating the inner track horizontally.
  * Once the track is fully translated, the page resumes vertical scrolling.
  */
@@ -10,7 +10,7 @@ export function HorizontalScrollLock({
   heading,
   bg,
   children,
-  sectionHeight = "h-fit", // 1. Changed default from 100vh to h-fit
+  sectionHeight = "h-fit",
 }: {
   heading: string;
   bg: string;
@@ -62,18 +62,21 @@ export function HorizontalScrollLock({
     <section ref={wrapperRef} className={`relative ${bg} text-hok`}>
       <div
         ref={stickyRef}
-        /* 2. Changed height from calc(sectionHeight - 88px) to just sectionHeight (h-fit) */
-        className="sticky overflow-hidden flex flex-col top-[68px] md:top-[88px]"
+        /* MATCHED ALIGNMENT: 
+           Changed top offset to [72px] and [104px] to align with PinkSection header. 
+        */
+        className="sticky overflow-hidden flex flex-col top-[72px] md:top-[104px] z-30"
         style={{ height: sectionHeight }} 
       >
-        {/* Adjusted bottom padding (pb-4 md:pb-6) to look better with the smaller heading */}
-        <div className="px-6 md:px-12 pt-6 md:pt-8 pb-4 md:pb-6 shrink-0">
-          {/* Matched the exact classes from BACK BY POPULAR DEMAND */}
+        {/* MATCHED PADDING: 
+           Using py-4 (1rem) to match the vertical breathing room of the PinkSection.
+        */}
+        <div className="px-6 md:px-12 py-4 shrink-0">
           <h2 className="font-display leading-[1.1] text-3xl md:text-4xl lg:text-5xl shrink-0">
             {heading}
           </h2>
         </div>
-        {/* 3. Changed items-stretch to items-start so tiles don't get forced to grow tall */}
+
         <div className="flex-1 min-h-0 flex items-start overflow-hidden pb-8 md:pb-10">
           <div
             ref={trackRef}
