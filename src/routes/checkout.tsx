@@ -287,3 +287,4 @@ function TrustBadge({ icon, label }: any) {
     </div>
   );
 }
+ 
